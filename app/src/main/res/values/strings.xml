@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Victory</string>
+    <string name="auth">授权</string>
 </resources>
