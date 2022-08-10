@@ -2,7 +2,6 @@ package com.qxy.victory.douyinapi
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +19,8 @@ class DouYinEntryActivity : AppCompatActivity(), IApiEventHandler {
     lateinit var douYinOpenApi: DouYinOpenApi
 
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         douYinOpenApi = DouYinOpenApiFactory.create(this)
         douYinOpenApi.handleIntent(intent, this)
     }
