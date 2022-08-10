@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DouYinOpenApiFactory.init(DouYinOpenConfig("awf5wex6wltac7ft"))
+        DouYinOpenApiFactory.init(DouYinOpenConfig("awglajxb10h8q9t7"))
         douYinOpenApi = DouYinOpenApiFactory.create(this)
 
         val btn1: Button = findViewById(R.id.authButton)

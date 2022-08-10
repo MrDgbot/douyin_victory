@@ -16,12 +16,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -29,6 +23,28 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    signingConfigs {
+        forAll {
+            storeFile file("${rootDir.absolutePath}/key.jks")
+            storePassword '159357abc'
+            keyAlias 'key0'
+            keyPassword '159357abc'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.forAll
+        }
+        profile {
+            signingConfig signingConfigs.forAll
+        }
+        release {
+            signingConfig signingConfigs.forAll
+        }
+    }
+
 }
 
 dependencies {
