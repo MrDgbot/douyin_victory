@@ -32,6 +32,8 @@ class DouYinEntryActivity : AppCompatActivity(), IApiEventHandler {
     override fun onResp(resp: BaseResp?) {
         if (resp == null) return
 
+        Log.d("TAGresp", "onResp: "+resp)
+
         if (resp.type == CommonConstants.ModeType.SHARE_CONTENT_TO_TT_RESP) {
             val response = resp as Share.Response
             Toast.makeText(
@@ -52,6 +54,7 @@ class DouYinEntryActivity : AppCompatActivity(), IApiEventHandler {
                     this, "授权成功，获得权限：" + response.grantedPermissions,
                     Toast.LENGTH_LONG
                 ).show()
+                Log.d("抖音授权测试", "authcode：" + response.authCode)
             }
         }
     }
