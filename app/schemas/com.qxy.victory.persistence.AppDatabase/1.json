@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3afb2f84d0cef046c4bdfb168ffd8f20",
+    "identityHash": "b134587c8a0d6ad1a8fdb0d58bb3679a",
     "entities": [
       {
         "tableName": "MovieItem",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`page` INTEGER NOT NULL, `id` TEXT NOT NULL, `discussionHot` INTEGER NOT NULL, `hot` INTEGER NOT NULL, `influenceHot` INTEGER NOT NULL, `maoyanId` TEXT NOT NULL, `name` TEXT NOT NULL, `name_en` TEXT NOT NULL, `poster` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, `searchHot` TEXT NOT NULL, `topicHot` TEXT NOT NULL, `type` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`page` INTEGER NOT NULL, `id` TEXT NOT NULL, `type` INTEGER NOT NULL, `name` TEXT NOT NULL, `poster` TEXT NOT NULL, `name_en` TEXT NOT NULL, `maoyanId` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, `hot` INTEGER NOT NULL, `discussionHot` INTEGER NOT NULL, `influenceHot` INTEGER NOT NULL, `searchHot` INTEGER NOT NULL, `topicHot` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "page",
@@ -21,38 +21,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "discussionHot",
-            "columnName": "discussionHot",
+            "fieldPath": "type",
+            "columnName": "type",
             "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "hot",
-            "columnName": "hot",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "influenceHot",
-            "columnName": "influenceHot",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "maoyanId",
-            "columnName": "maoyanId",
-            "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "name",
             "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "name_en",
-            "columnName": "name_en",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -63,26 +39,50 @@
             "notNull": true
           },
           {
+            "fieldPath": "name_en",
+            "columnName": "name_en",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maoyanId",
+            "columnName": "maoyanId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "releaseDate",
             "columnName": "releaseDate",
             "affinity": "TEXT",
             "notNull": true
           },
           {
+            "fieldPath": "hot",
+            "columnName": "hot",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "discussionHot",
+            "columnName": "discussionHot",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "influenceHot",
+            "columnName": "influenceHot",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "searchHot",
             "columnName": "searchHot",
-            "affinity": "TEXT",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
             "fieldPath": "topicHot",
             "columnName": "topicHot",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "type",
-            "columnName": "type",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -180,7 +180,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3afb2f84d0cef046c4bdfb168ffd8f20')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b134587c8a0d6ad1a8fdb0d58bb3679a')"
     ]
   }
 }

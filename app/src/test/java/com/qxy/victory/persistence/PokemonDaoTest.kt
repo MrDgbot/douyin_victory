@@ -16,7 +16,7 @@
 
 package com.qxy.victory.persistence
 
-import com.qxy.victory.utils.MockUtil.mockPokemon
+import com.qxy.victory.utils.MockUtil.mockMovieItem
 import com.qxy.victory.utils.MockUtil.mockPokemonList
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
@@ -46,7 +46,7 @@ class PokemonDaoTest : LocalDatabase() {
     val loadFromDB = pokemonDao.getPokemonList(page_ = 0)
     assertThat(loadFromDB.toString(), `is`(mockDataList.toString()))
 
-    val mockData = mockPokemon()
+    val mockData = mockMovieItem()
     assertThat(loadFromDB[0].toString(), `is`(mockData.toString()))
   }
 }

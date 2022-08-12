@@ -58,6 +58,7 @@ class MainRepository @Inject constructor(
           pokemons = data.data.list
           Timber.d(data.data.list.toString())
           pokemons.forEach { pokemon -> pokemon.page = page }
+
           pokemonDao.insertPokemonList(pokemons)
           emit(pokemonDao.getAllPokemonList(page))
         }.onFailure {
