@@ -20,7 +20,7 @@ import com.qxy.victory.network.DyClient
 import com.qxy.victory.persistence.PokemonDao
 import com.qxy.victory.persistence.PokemonInfoDao
 import com.qxy.victory.repository.DetailRepository
-import com.qxy.victory.repository.MainRepository
+import com.qxy.victory.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,8 +38,8 @@ object RepositoryModule {
     dyClient: DyClient,
     pokemonDao: PokemonDao,
     coroutineDispatcher: CoroutineDispatcher
-  ): MainRepository {
-    return MainRepository(dyClient, pokemonDao, coroutineDispatcher)
+  ): MovieRepository {
+    return MovieRepository(dyClient, pokemonDao, coroutineDispatcher)
   }
 
   @Provides

@@ -25,7 +25,7 @@
 
     <variable
       name="vm"
-      type="com.qxy.victory.ui.details.DetailViewModel" />
+      type="com.qxy.victory.ui.activity.details.DetailViewModel" />
   </data>
 
   <androidx.core.widget.NestedScrollView

@@ -22,4 +22,11 @@
   <string name="def">DEF</string>
   <string name="spd">SPD</string>
   <string name="exp">EXP</string>
+  <string name="home" translatable="false">首页</string>
+  <string name="friend" translatable="false">朋友</string>
+  <string name="message" translatable="false">消息</string>
+  <string name="mine" translatable="false">我的</string>
+  <string name="movie_ranking" translatable="false">抖音电影榜单</string>
+  <string name="tv_ranking" translatable="false">抖音剧集榜单</string>
+  <string name="shows_ranking" translatable="false">抖音综艺榜单</string>
 </resources>

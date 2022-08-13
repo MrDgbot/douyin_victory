@@ -18,9 +18,9 @@ package com.qxy.victory.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.qxy.victory.ui.activity.MovieRankingViewModel
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.bindables.BindingListAdapter
-import com.qxy.victory.ui.main.MainViewModel
 import com.skydoves.whatif.whatIfNotNullAs
 
 object RecyclerViewBinding {
@@ -43,7 +43,7 @@ object RecyclerViewBinding {
 
   @JvmStatic
   @BindingAdapter("paginationDyMovieList")
-  fun paginationDyMovieList(view: RecyclerView, viewModel: MainViewModel) {
+  fun paginationDyMovieList(view: RecyclerView, viewModel: MovieRankingViewModel) {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading },

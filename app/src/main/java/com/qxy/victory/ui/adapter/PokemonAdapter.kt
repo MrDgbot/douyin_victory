@@ -26,7 +26,7 @@ import com.skydoves.bindables.binding
 import com.qxy.victory.R
 import com.qxy.victory.databinding.ItemPokemonBinding
 import com.qxy.victory.model.MovieItem
-import com.qxy.victory.ui.details.DetailActivity
+import com.qxy.victory.ui.activity.details.DetailActivity
 
 class PokemonAdapter : BindingListAdapter<MovieItem, PokemonAdapter.PokemonViewHolder>(diffUtil) {
 

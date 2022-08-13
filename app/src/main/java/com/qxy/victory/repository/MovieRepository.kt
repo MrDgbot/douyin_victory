@@ -17,7 +17,6 @@
 package com.qxy.victory.repository
 
 import androidx.annotation.WorkerThread
-import com.qxy.victory.model.MovieItem
 import com.qxy.victory.network.DyClient
 import com.qxy.victory.persistence.PokemonDao
 import com.skydoves.sandwich.*
@@ -29,25 +28,22 @@ import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainRepository @Inject constructor(
+class MovieRepository @Inject constructor(
   private val dyClient: DyClient,
   private val pokemonDao: PokemonDao,
   private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
 
   @WorkerThread
-  fun fetchPokemonList(
+  fun fetchMovieList(
     page: Int,
     onStart: () -> Unit,
     onComplete: () -> Unit,
     onError: (String?) -> Unit
   ) = flow {
-    var pokemons = pokemonDao.getPokemonList(page)
-    if (pokemons.isEmpty()) {
-      /**
-       * fetches a list of [MovieItem] from the network and getting [ApiResponse] asynchronously.
-       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#apiresponse-extensions-for-coroutines)
-       */
+    var moviesList = pokemonDao.getPokemonList(page)
+    if (moviesList.isEmpty()) {
+
       val response = dyClient.oauthClientToken()
 
       response.suspendOnSuccess {
@@ -55,11 +51,11 @@ class MainRepository @Inject constructor(
         val response2 = dyClient.discoveryMovieList(1, token)
 
         response2.suspendOnSuccess {
-          pokemons = data.data.list
+          moviesList = data.data.list
           Timber.d(data.data.list.toString())
-          pokemons.forEach { pokemon -> pokemon.page = page }
+          moviesList.forEach { pokemon -> pokemon.page = page }
 
-          pokemonDao.insertPokemonList(pokemons)
+          pokemonDao.insertPokemonList(moviesList)
           emit(pokemonDao.getAllPokemonList(page))
         }.onFailure {
           Timber.d(message())

@@ -26,20 +26,23 @@ import androidx.activity.OnBackPressedDispatcherOwner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
 import com.google.android.material.card.MaterialCardView
-import com.skydoves.androidribbon.RibbonRecyclerView
-import com.skydoves.androidribbon.ribbonView
+import com.google.android.material.tabs.TabLayout
 import com.qxy.victory.model.PokemonInfo
 import com.qxy.victory.utils.PokemonTypeUtils
 import com.qxy.victory.utils.SpacesItemDecoration
+import com.skydoves.androidribbon.RibbonRecyclerView
+import com.skydoves.androidribbon.ribbonView
 import com.skydoves.progressview.ProgressView
 import com.skydoves.rainbow.Rainbow
 import com.skydoves.rainbow.RainbowOrientation
 import com.skydoves.rainbow.color
 import com.skydoves.whatif.whatIfNotNullOrEmpty
+import timber.log.Timber
 
 object ViewBinding {
 
@@ -174,4 +177,25 @@ object ViewBinding {
       progressView.max = value.toFloat()
     }
   }
+
+  @JvmStatic
+  @BindingAdapter("page_change")
+  fun bindPageChange(view: TabLayout, pager: ViewPager2) {
+    view.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+      override fun onTabSelected(tab: TabLayout.Tab?) {
+        tab?.position?.let { pager.currentItem = it }
+
+        Timber.d("onTabSelected: ${tab?.position}")
+      }
+
+      override fun onTabReselected(tab: TabLayout.Tab?) {
+      }
+
+      override fun onTabUnselected(tab: TabLayout.Tab?) {
+      }
+
+
+    })
+  }
+
 }

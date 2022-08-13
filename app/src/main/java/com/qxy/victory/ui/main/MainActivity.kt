@@ -19,12 +19,14 @@ package com.qxy.victory.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
-import com.skydoves.bindables.BindingActivity
+import androidx.fragment.app.FragmentActivity
 import com.qxy.victory.R
 import com.qxy.victory.databinding.ActivityMainBinding
-import com.qxy.victory.ui.adapter.PokemonAdapter
+import com.qxy.victory.ui.adapter.ViewPagerAdapter
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -35,8 +37,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
+    val myFragmentActivity: FragmentActivity = this
+
     binding {
-      adapter = PokemonAdapter()
+      adapter = ViewPagerAdapter(myFragmentActivity, 2)
       vm = viewModel
     }
   }

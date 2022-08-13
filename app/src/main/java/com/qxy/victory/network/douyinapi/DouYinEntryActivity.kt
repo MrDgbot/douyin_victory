@@ -1,4 +1,4 @@
-package com.qxy.victory.douyinapi
+package com.qxy.victory.network.douyinapi
 
 import android.content.Intent
 import android.os.Bundle

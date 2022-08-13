@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.qxy.victory.ui.details
+package com.qxy.victory.ui.activity.details
 
 import androidx.databinding.Bindable
 import androidx.lifecycle.ViewModel

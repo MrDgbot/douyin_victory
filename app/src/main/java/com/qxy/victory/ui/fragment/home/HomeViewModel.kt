@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.qxy.victory.ui.main
+package com.qxy.victory.ui.fragment.home
 
+import com.qxy.victory.repository.MovieRepository
 import com.skydoves.bindables.BindingViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor() : BindingViewModel() {
 
-  init {
-    Timber.d("init MainViewModel")
-  }
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+  private val mainRepository: MovieRepository
+) : BindingViewModel() {
+
 
 }

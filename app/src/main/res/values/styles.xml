@@ -20,6 +20,7 @@
     <item name="colorAccent">@color/colorAccent</item>
     <item name="colorControlHighlight">@color/colorPrimary</item>
     <item name="android:textColorPrimary">@android:color/white</item>
+    <item name="android:navigationBarColor">@color/black</item>
   </style>
 
   <style name="TextStyle" parent="@android:style/Widget.TextView">
@@ -40,6 +41,14 @@
     <item name="cornerFamilyBottomRight">rounded</item>
     <item name="cornerSizeBottomLeft">20%</item>
     <item name="cornerSizeBottomRight">20%</item>
+  </style>
+
+  <style name="AppBar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <item name="autoSizeTextType">uniform</item>
+    <item name="maxLines">1</item>
+    <item name="android:textSize">38sp</item>
+    <item name="autoSizeMaxTextSize">80dp</item>
+    <item name="autoSizeMinTextSize">2dp</item>
   </style>
 
 </resources>
