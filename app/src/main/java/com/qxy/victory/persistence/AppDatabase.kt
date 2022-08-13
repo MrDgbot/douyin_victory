@@ -19,13 +19,15 @@ package com.qxy.victory.persistence
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.qxy.victory.model.ActorItem
 import com.qxy.victory.model.MovieItem
 import com.qxy.victory.model.PokemonInfo
 
-@Database(entities = [MovieItem::class, PokemonInfo::class], version = 1, exportSchema = true)
+@Database(entities = [MovieItem::class, PokemonInfo::class, ActorItem::class], version = 2, exportSchema = true)
 @TypeConverters(value = [TypeResponseConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun pokemonDao(): PokemonDao
+  abstract fun tvShowDao(): TvShowDao
   abstract fun pokemonInfoDao(): PokemonInfoDao
 }

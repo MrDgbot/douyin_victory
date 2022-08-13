@@ -2,6 +2,7 @@ package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
 import com.qxy.victory.model.MovieResp
+import com.qxy.victory.model.ShowResp
 import com.qxy.victory.utils.Constants
 import com.skydoves.sandwich.ApiResponse
 import javax.inject.Inject
@@ -23,6 +24,15 @@ class DyClient @Inject constructor(
     token: String
   ): ApiResponse<MovieResp> =
     dyService.discoveryMovieList(
+      type = type,
+      token = token
+    )
+
+  suspend fun discoveryShowList(
+    type: Int,
+    token: String
+  ): ApiResponse<ShowResp> =
+    dyService.discoveryShowList(
       type = type,
       token = token
     )

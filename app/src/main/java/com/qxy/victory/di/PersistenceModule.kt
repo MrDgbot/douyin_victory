@@ -18,10 +18,7 @@ package com.qxy.victory.di
 
 import android.app.Application
 import androidx.room.Room
-import com.qxy.victory.persistence.AppDatabase
-import com.qxy.victory.persistence.PokemonDao
-import com.qxy.victory.persistence.PokemonInfoDao
-import com.qxy.victory.persistence.TypeResponseConverter
+import com.qxy.victory.persistence.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -65,6 +62,12 @@ object PersistenceModule {
   @Singleton
   fun providePokemonInfoDao(appDatabase: AppDatabase): PokemonInfoDao {
     return appDatabase.pokemonInfoDao()
+  }
+
+  @Provides
+  @Singleton
+  fun provideTvShowDao(appDatabase: AppDatabase): TvShowDao {
+    return appDatabase.tvShowDao()
   }
 
   @Provides

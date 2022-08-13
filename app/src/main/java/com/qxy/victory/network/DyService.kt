@@ -2,6 +2,7 @@ package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
 import com.qxy.victory.model.MovieResp
+import com.qxy.victory.model.ShowResp
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.*
 
@@ -20,6 +21,14 @@ interface DyService {
     @Header("access-token") token: String,
     @Query("type") type: Int
   ): ApiResponse<MovieResp>
+
+  @Headers("Content-Type:application/json")
+  @GET("/discovery/ent/rank/item/")//api/getShow
+  //@GET("api/getShow")
+  suspend fun discoveryShowList(
+    @Header("access-token") token: String,
+    @Query("type") type: Int
+  ): ApiResponse<ShowResp>
 
 //
 //  @GET("pokemon")

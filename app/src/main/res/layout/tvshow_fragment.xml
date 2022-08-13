@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+      name="vm"
+      type="com.qxy.victory.ui.fragment.tvshow.TVShowViewModel" />
+
+
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MovieFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appBarLayout"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:background="@android:color/transparent"
+      app:layout_constraintBottom_toBottomOf="@id/imageView"
+      app:layout_constraintTop_toTopOf="parent">
+
+
+      <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/header"
+        app:onBackPressed="@{true}"
+        app:srcCompat="@drawable/ic_arrow" />
+
+      <!--    <TextView-->
+      <!--      android:id="@+id/textView2"-->
+      <!--      android:padding="10dp"-->
+      <!--      android:layout_width="match_parent"-->
+      <!--      android:layout_height="match_parent"-->
+      <!--      android:text="抖音电影榜"-->
+      <!--      android:textColor="@color/colorPrimary"-->
+      <!--      android:autoSizeTextType="uniform"-->
+      <!--      android:autoSizeMaxTextSize="80dp"-->
+      <!--      android:autoSizeMinTextSize="2dp"-->
+      <!--      android:textAlignment="center"-->
+      <!--      android:maxLines="1"-->
+      <!--       />-->
+      <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        app:menu="@menu/app_bar"
+        app:title="抖音综艺热榜"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/AppBar.TitleText" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:adjustViewBounds="true"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/bg" />
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
