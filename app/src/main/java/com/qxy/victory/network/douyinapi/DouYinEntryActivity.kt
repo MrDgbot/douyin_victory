@@ -13,7 +13,7 @@ import com.bytedance.sdk.open.aweme.common.model.BaseResp
 import com.bytedance.sdk.open.aweme.share.Share
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
-import com.qxy.victory.ui.main.MainActivity
+import com.qxy.victory.ui.activity.main.MainActivity
 
 class DouYinEntryActivity : AppCompatActivity(), IApiEventHandler {
     lateinit var douYinOpenApi: DouYinOpenApi

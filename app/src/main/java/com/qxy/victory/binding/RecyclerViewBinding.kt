@@ -18,7 +18,7 @@ package com.qxy.victory.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.qxy.victory.ui.activity.MovieRankingViewModel
+import com.qxy.victory.ui.activity.movie.MovieRankingViewModel
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.whatif.whatIfNotNullAs

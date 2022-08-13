@@ -8,7 +8,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.viewModels
 import com.qxy.victory.R
 import com.qxy.victory.databinding.HomeFragmentBinding
-import com.qxy.victory.ui.activity.MovieRankingActivity
+import com.qxy.victory.ui.activity.movie.MovieRankingActivity
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.qxy.victory.ui.main
+package com.qxy.victory.ui.activity.main
 
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.FragmentActivity
@@ -37,8 +39,12 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
-    val myFragmentActivity: FragmentActivity = this
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      // 设置状态栏透明
+      window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    }
 
+    val myFragmentActivity: FragmentActivity = this
     binding {
       adapter = ViewPagerAdapter(myFragmentActivity, 2)
       vm = viewModel

@@ -5,12 +5,12 @@ import android.view.View
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.viewModels
 import com.qxy.victory.R
-import com.qxy.victory.databinding.MovieChartsBinding
+import com.qxy.victory.databinding.MovieFragmentBinding
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieFragment : BindingFragment<MovieChartsBinding>(R.layout.movie_charts) {
+class MovieFragment : BindingFragment<MovieFragmentBinding>(R.layout.movie_fragment) {
 
   @get:VisibleForTesting
   internal val viewModel: MovieViewModel by viewModels()

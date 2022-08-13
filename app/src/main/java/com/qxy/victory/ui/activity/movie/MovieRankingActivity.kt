@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.qxy.victory.ui.activity
+package com.qxy.victory.ui.activity.movie
 
 import android.os.Bundle
 import androidx.activity.viewModels

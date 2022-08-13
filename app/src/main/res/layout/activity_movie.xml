@@ -7,7 +7,7 @@
 
     <variable
       name="vm"
-      type="com.qxy.victory.ui.activity.MovieRankingViewModel" />
+      type="com.qxy.victory.ui.activity.movie.MovieRankingViewModel" />
 
     <variable
       name="adapter"

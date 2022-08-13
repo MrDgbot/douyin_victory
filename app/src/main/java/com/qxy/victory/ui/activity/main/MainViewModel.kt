@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.qxy.victory.ui.main
+package com.qxy.victory.ui.activity.main
 
 import com.skydoves.bindables.BindingViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

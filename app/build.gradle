@@ -20,7 +20,6 @@ android {
       annotationProcessorOptions {
         arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
         arguments += ["dagger.hilt.disableModulesHaveInstallInCheck": "true"]
-        arguments += [AROUTER_MODULE_NAME: project.getName()]
       }
     }
   }
@@ -172,10 +171,7 @@ dependencies {
   // DouYinOpenSdk
   implementation "com.bytedance.ies.ugc.aweme:opensdk-china-external:$versions.douYinOpenSdkVersion"
   implementation "com.bytedance.ies.ugc.aweme:opensdk-common:$versions.douYinOpenSdkVersion"
-
-  //ARouter
-  implementation 'com.alibaba:arouter-api:1.5.2'
-  annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+  
 }
 
 apply from: "$rootDir/spotless.gradle"

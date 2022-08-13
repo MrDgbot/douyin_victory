@@ -26,7 +26,7 @@
 //import com.qxy.victory.network.DyService
 //import com.qxy.victory.persistence.PokemonDao
 //import com.qxy.victory.repository.HomeRepository
-//import com.qxy.victory.ui.main.MainViewModel
+//import com.qxy.victory.ui.activity.main.MainViewModel
 //import com.qxy.victory.utils.MockUtil
 //import kotlinx.coroutines.test.runTest
 //import org.junit.Assert
