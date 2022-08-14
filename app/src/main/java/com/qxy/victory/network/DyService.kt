@@ -37,6 +37,12 @@ interface DyService {
   suspend fun getMockSeriesData(
   ): ApiResponse<SeriesResp>
 
+  //Mock电影榜
+  @Headers("Content-Type:application/json")
+  @GET("https://mpandaer.github.io/movie.json")
+  suspend fun getMockMovieData(
+  ):ApiResponse<MovieResp>
+
   @Headers("Content-Type:application/json")
   @GET("/discovery/ent/rank/item/")//api/getShow
   //@GET("api/getShow")

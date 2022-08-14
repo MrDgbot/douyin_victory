@@ -18,6 +18,7 @@ package com.qxy.victory.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.qxy.victory.utils.NumberUtils
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -25,6 +26,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class MovieItem(
   var page: Int = 0,
+  var index:Int = 0,
   @field:Json(name = "id") @PrimaryKey val id: String,
 //  @field:Json(name = "actors") val actors: List<String>,
   @field:Json(name = "type") val type: Int,
@@ -38,4 +40,11 @@ data class MovieItem(
   @field:Json(name = "influence_hot") val influenceHot: Long,
   @field:Json(name = "search_hot") val searchHot: Long,
   @field:Json(name = "topic_hot") val topicHot: Long
-)
+){
+
+  fun getDiscussionString(): String= NumberUtils().formatNum(discussionHot.toString()).toString()
+  fun getIndexString(): String = when (index) {
+    1, 2, 3 -> "TOP${index}"
+    else -> index.toString()
+  }
+}

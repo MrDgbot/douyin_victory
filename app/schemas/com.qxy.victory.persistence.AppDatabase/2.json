@@ -2,15 +2,21 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "7d1a6e9b38a97ff685eb483096aca2e0",
+    "identityHash": "0e389d3c0484a4bd36e84d044f57d4e5",
     "entities": [
       {
         "tableName": "MovieItem",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`page` INTEGER NOT NULL, `id` TEXT NOT NULL, `type` INTEGER NOT NULL, `name` TEXT NOT NULL, `poster` TEXT NOT NULL, `name_en` TEXT NOT NULL, `maoyanId` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, `hot` INTEGER NOT NULL, `discussionHot` INTEGER NOT NULL, `influenceHot` INTEGER NOT NULL, `searchHot` INTEGER NOT NULL, `topicHot` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`page` INTEGER NOT NULL, `index` INTEGER NOT NULL, `id` TEXT NOT NULL, `type` INTEGER NOT NULL, `name` TEXT NOT NULL, `poster` TEXT NOT NULL, `name_en` TEXT NOT NULL, `maoyanId` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, `hot` INTEGER NOT NULL, `discussionHot` INTEGER NOT NULL, `influenceHot` INTEGER NOT NULL, `searchHot` INTEGER NOT NULL, `topicHot` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "page",
             "columnName": "page",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "index",
+            "columnName": "index",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -370,7 +376,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7d1a6e9b38a97ff685eb483096aca2e0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0e389d3c0484a4bd36e84d044f57d4e5')"
     ]
   }
 }

@@ -48,13 +48,19 @@ class MovieRepository @Inject constructor(
 
       response.suspendOnSuccess {
         val token = data.data.accessToken
-        val response2 = dyClient.discoveryMovieList(1, token)
+        //替代为Mock
+        val response2=dyClient.getMovieMockData();
+        //val response2 = dyClient.discoveryMovieList(1, token)
 
         response2.suspendOnSuccess {
           moviesList = data.data.list
           Timber.d(data.data.list.toString())
-          moviesList.forEach { pokemon -> pokemon.page = page }
+          //moviesList.forEach { pokemon -> pokemon.page = page }
 
+          for((index,pokemon) in moviesList.withIndex()){
+            pokemon.page=page
+            pokemon.index=index+1;
+          }
           pokemonDao.insertPokemonList(moviesList)
           emit(pokemonDao.getAllPokemonList(page))
         }.onFailure {
