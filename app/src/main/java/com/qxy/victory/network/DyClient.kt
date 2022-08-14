@@ -45,6 +45,10 @@ class DyClient @Inject constructor(
   suspend fun getMovieMockData(
   ):ApiResponse<MovieResp> = dyService.getMockMovieData();
 
+  //获取电影榜
+  suspend fun getTvMockData(
+  ):ApiResponse<ShowResp> = dyService.getMockTvData();
+
   suspend fun discoveryShowList(
     type: Int,
     token: String

@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.qxy.victory.R
 import com.qxy.victory.databinding.ItemTvshowBinding
-import com.qxy.victory.model.ActorItem
+import com.qxy.victory.model.ShowItem
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 
-class ShowAdapter : BindingListAdapter<ActorItem, ShowAdapter.TvShowViewHolder>(diffUtil) {
+class ShowAdapter : BindingListAdapter<ShowItem, ShowAdapter.TvShowViewHolder>(diffUtil) {
 
   private var onClickedAt = 0L
 
@@ -37,19 +37,19 @@ class ShowAdapter : BindingListAdapter<ActorItem, ShowAdapter.TvShowViewHolder>(
       }
     }
 
-    fun bindPokemon(actorItem: ActorItem) {
+    fun bindPokemon(actorItem: ShowItem) {
       binding.item=actorItem
       binding.executePendingBindings()
     }
   }
 
   companion object {
-    private val diffUtil = object : DiffUtil.ItemCallback<ActorItem>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<ShowItem>() {
 
-      override fun areItemsTheSame(oldItem: ActorItem, newItem: ActorItem): Boolean =
+      override fun areItemsTheSame(oldItem: ShowItem, newItem: ShowItem): Boolean =
         oldItem.name == newItem.name
 
-      override fun areContentsTheSame(oldItem: ActorItem, newItem: ActorItem): Boolean =
+      override fun areContentsTheSame(oldItem: ShowItem, newItem: ShowItem): Boolean =
         oldItem == newItem
     }
   }

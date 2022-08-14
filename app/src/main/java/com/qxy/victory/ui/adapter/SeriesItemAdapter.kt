@@ -24,11 +24,8 @@ import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import com.qxy.victory.R
-import com.qxy.victory.databinding.ItemPokemonBinding
 import com.qxy.victory.databinding.ItemSeriesBinding
-import com.qxy.victory.model.MovieItem
 import com.qxy.victory.model.SeriesItem
-import com.qxy.victory.ui.activity.details.DetailActivity
 
 class SeriesItemAdapter : BindingListAdapter<SeriesItem, SeriesItemAdapter.SeriesViewHolder>(diffUtil) {
 

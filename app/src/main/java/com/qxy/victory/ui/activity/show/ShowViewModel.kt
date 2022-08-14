@@ -3,7 +3,7 @@ package com.qxy.victory.ui.activity.show
 import androidx.annotation.MainThread
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
-import com.qxy.victory.model.ActorItem
+import com.qxy.victory.model.ShowItem
 import com.qxy.victory.repository.ShowRepository
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
@@ -38,7 +38,7 @@ class ShowViewModel  @Inject constructor(
   }
 
   @get:Bindable
-  val tvShowItemList: List<ActorItem> by pokemonListFlow.asBindingProperty(viewModelScope, emptyList())
+  val tvShowItemList: List<ShowItem> by pokemonListFlow.asBindingProperty(viewModelScope, emptyList())
 
   init {
     Timber.d("init TVViewModel")

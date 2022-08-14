@@ -20,7 +20,7 @@ data class ShowResp(
         @Json(name = "error_code")
         val errorCode: Int, // 0
         @Json(name = "list")
-        val list: List<ActorItem>
+        val list: List<ShowItem>
     )
     @JsonClass(generateAdapter = true)
     data class Extra(

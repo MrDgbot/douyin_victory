@@ -43,13 +43,16 @@ class ShowRepository @Inject constructor(
 
       response.suspendOnSuccess {
         val token = data.data.accessToken
-        val response2 = dyClient.discoveryShowList(3, token)
+//        val response2 = dyClient.discoveryShowList(3, token)
+        val response2 = dyClient.getTvMockData()
 
         response2.suspendOnSuccess {
           pokemons = data.data.list
           Timber.d(data.data.list.toString())
-          pokemons.forEach { pokemon -> pokemon.page = page }
-
+          for((index,pokemon) in pokemons.withIndex()){
+            pokemon.page=page
+            pokemon.index=index+1;
+          }
           pokemonDao.insertShowList(pokemons)
           emit(pokemonDao.getShowList(page))
         }.onFailure {

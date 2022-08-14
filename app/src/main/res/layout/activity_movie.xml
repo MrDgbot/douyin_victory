@@ -115,7 +115,7 @@
       app:spanCount="1"
       app:submitList="@{vm.movieItemList}"
       app:toast="@{vm.toastMessage}"
-      tools:listitem="@layout/item_pokemon" />
+      tools:listitem="@layout/item_movie" />
 
     <ProgressBar
       android:id="@+id/progressbar"

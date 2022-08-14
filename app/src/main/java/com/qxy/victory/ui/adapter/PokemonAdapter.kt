@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import com.qxy.victory.R
-import com.qxy.victory.databinding.ItemPokemonBinding
+import com.qxy.victory.databinding.ItemMovieBinding
 import com.qxy.victory.model.MovieItem
 import com.qxy.victory.ui.activity.details.DetailActivity
 
@@ -33,13 +33,13 @@ class PokemonAdapter : BindingListAdapter<MovieItem, PokemonAdapter.PokemonViewH
   private var onClickedAt = 0L
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder =
-    parent.binding<ItemPokemonBinding>(R.layout.item_pokemon).let(::PokemonViewHolder)
+    parent.binding<ItemMovieBinding>(R.layout.item_movie).let(::PokemonViewHolder)
 
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) =
     holder.bindPokemon(getItem(position))
 
   inner class PokemonViewHolder constructor(
-    private val binding: ItemPokemonBinding
+    private val binding: ItemMovieBinding
   ) : RecyclerView.ViewHolder(binding.root) {
 
     init {

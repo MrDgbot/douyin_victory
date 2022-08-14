@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.qxy.victory.utils.NumberUtils
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import timber.log.Timber
 
 @Entity
 @JsonClass(generateAdapter = true)
@@ -12,7 +13,8 @@ data class SeriesItem(
   var page: Int = 0,
   var index: Int = 0,
   @field:Json(name = "id") @PrimaryKey val id: String,
-//  @field:Json(name = "actors") val actors: List<String>,
+  @field:Json(name = "actors") val actors: List<String>? = null,
+  @field:Json(name = "tags") val tags: List<String>? = null,
   @field:Json(name = "type") val type: Int,
   @field:Json(name = "name") val name: String,
   @field:Json(name = "poster") val poster: String,
@@ -24,8 +26,22 @@ data class SeriesItem(
   @field:Json(name = "influence_hot") val influenceHot: Long,
   @field:Json(name = "search_hot") val searchHot: Int,
   @field:Json(name = "topic_hot") val topicHot: Int,
-  //@field:Json(name = "directors") val director: List<String>
 ) {
+  fun getActorsString(): String {
+    if (actors.isNullOrEmpty()) return ""
+    if (actors.isEmpty()) return ""
+    val len = if (actors.size < 3) actors.size else 3
+    Timber.d("actors size: ${actors.size}")
+    Timber.d("actors : ${actors.toString()}")
+    return actors.take(len).joinToString(separator = "/") ?: ""
+  }
+
+  fun getTagsString(): String {
+    if (tags.isNullOrEmpty()) return ""
+    val len = if (tags.size < 2) tags.size else 2
+    return "  [" + tags.take(len).joinToString(separator = "|") + "]"
+  }
+
   fun getDiscussionHotString(): String =
     NumberUtils().formatNum(discussionHot.toString()).toString()
 
