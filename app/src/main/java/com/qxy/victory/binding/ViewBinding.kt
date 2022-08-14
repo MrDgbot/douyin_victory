@@ -61,9 +61,9 @@ object ViewBinding {
       .load(url)
       .listener(
         GlidePalette.with(url)
-          .use(BitmapPalette.Profile.MUTED_LIGHT)
+          .use(BitmapPalette.Profile.MUTED_DARK)
           .intoCallBack { palette ->
-            val rgb = palette?.dominantSwatch?.rgb
+            val rgb = palette?.darkMutedSwatch?.rgb
             if (rgb != null) {
               paletteCard.setCardBackgroundColor(rgb)
             }

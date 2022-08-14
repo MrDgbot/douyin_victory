@@ -37,6 +37,11 @@ class DyClient @Inject constructor(
       type = type,
       token = token
     )
+
+  suspend fun getSeriesMockDta(
+  ): ApiResponse<SeriesResp> = dyService.getMockSeriesData()
+
+
   suspend fun discoveryShowList(
     type: Int,
     token: String

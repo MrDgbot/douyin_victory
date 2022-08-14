@@ -34,12 +34,16 @@ class SeriesRepository @Inject constructor(
 
         response.suspendOnSuccess {
           val token = data.data.accessToken
-          val response2 = dyClient.discoverySeriesList(2, token)
+          val response2 = dyClient.getSeriesMockDta()
+//          val response2 = dyClient.discoverySeriesList(2, token)
 
           response2.suspendOnSuccess {
             seriesList = data.data.list
             Timber.d(data.data.list.toString())
-            seriesList.forEach { pokemon -> pokemon.page = page }
+            for((index, pokemon) in seriesList.withIndex()){
+                pokemon.page = page
+                pokemon.index = index+1
+            }
 
             pokemonDao.insertSeriesList(seriesList)
             emit(pokemonDao.getAllSeriesList(page))

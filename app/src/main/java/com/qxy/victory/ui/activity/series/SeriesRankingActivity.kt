@@ -16,7 +16,9 @@
 
 package com.qxy.victory.ui.activity.series
 
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import com.skydoves.bindables.BindingActivity
@@ -39,6 +41,10 @@ class SeriesRankingActivity : BindingActivity<ActivitySeriesBinding>(R.layout.ac
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams(this)
     super.onCreate(savedInstanceState)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      // 设置状态栏透明
+      window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    }
     binding {
       vm = viewModel
       adapter = SeriesItemAdapter()

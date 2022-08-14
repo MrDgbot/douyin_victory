@@ -33,6 +33,11 @@ interface DyService {
   ): ApiResponse<SeriesResp>
 
   @Headers("Content-Type:application/json")
+  @GET("https://mpandaer.github.io/zongyi.json")//api/getShow
+  suspend fun getMockSeriesData(
+  ): ApiResponse<SeriesResp>
+
+  @Headers("Content-Type:application/json")
   @GET("/discovery/ent/rank/item/")//api/getShow
   //@GET("api/getShow")
   suspend fun discoveryShowList(
