@@ -59,6 +59,9 @@
     <activity
       android:name=".ui.activity.show.ShowActivity"
       android:launchMode="singleTop" />
+    <activity
+      android:name=".ui.activity.series.SeriesRankingActivity"
+      android:launchMode="standard"/>
 
     <provider
       android:name="androidx.startup.InitializationProvider"

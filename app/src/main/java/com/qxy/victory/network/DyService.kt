@@ -2,6 +2,7 @@ package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
 import com.qxy.victory.model.MovieResp
+import com.qxy.victory.model.SeriesResp
 import com.qxy.victory.model.ShowResp
 import com.qxy.victory.network.url.OauthUrl
 import com.skydoves.sandwich.ApiResponse
@@ -22,6 +23,14 @@ interface DyService {
     @Header("access-token") token: String,
     @Query("type") type: Int
   ): ApiResponse<MovieResp>
+
+  @Headers("Content-Type:application/json")
+  @GET("/discovery/ent/rank/item/")//api/getShow
+  //@GET("api/getShow")
+  suspend fun discoverySeriesList(
+    @Header("access-token") token: String,
+    @Query("type") type: Int
+  ): ApiResponse<SeriesResp>
 
   @Headers("Content-Type:application/json")
   @GET("/discovery/ent/rank/item/")//api/getShow

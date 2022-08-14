@@ -75,4 +75,10 @@ object PersistenceModule {
   fun provideTypeResponseConverter(moshi: Moshi): TypeResponseConverter {
     return TypeResponseConverter(moshi)
   }
+
+  @Provides
+  @Singleton
+  fun provideSeriesDao(appDatabase: AppDatabase): SeriesDao {
+    return appDatabase.seriesDao()
+  }
 }
