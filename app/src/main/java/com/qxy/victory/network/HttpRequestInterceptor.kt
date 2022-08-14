@@ -16,6 +16,7 @@
 
 package com.qxy.victory.network
 
+import com.qxy.victory.utils.NetWorkUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 import timber.log.Timber
@@ -23,8 +24,28 @@ import timber.log.Timber
 class HttpRequestInterceptor : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {
     val originalRequest = chain.request()
-    val request = originalRequest.newBuilder().url(originalRequest.url).build()
+    val request = originalRequest.newBuilder().url(originalRequest.url)
+
+    // 找到当前类对应Key的文件名
+    var currentTokenFileName = ""
+    NetWorkUtils.instance.urlClassMap.forEach {
+      it.value.forEach { url ->
+        if (originalRequest.url.toString().contains(url)) {
+          Timber.d("request url : $url")
+          currentTokenFileName = it.key
+        }
+      }
+    }
+
+    if (currentTokenFileName == "OauthUrl") {
+      return chain.proceed(
+        request.build()
+      )
+    }
+
     Timber.d(request.toString())
-    return chain.proceed(request)
+    return chain.proceed(
+      request.build()
+    )
   }
 }
