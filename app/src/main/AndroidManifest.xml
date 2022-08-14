@@ -56,6 +56,9 @@
     <activity
       android:name=".ui.activity.details.DetailActivity"
       android:launchMode="singleTop" />
+    <activity
+      android:name=".ui.activity.show.ShowActivity"
+      android:launchMode="singleTop" />
 
     <provider
       android:name="androidx.startup.InitializationProvider"

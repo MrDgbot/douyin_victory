@@ -28,6 +28,6 @@ import com.qxy.victory.model.PokemonInfo
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun pokemonDao(): PokemonDao
-  abstract fun tvShowDao(): TvShowDao
+  abstract fun tvShowDao(): ShowDao
   abstract fun pokemonInfoDao(): PokemonInfoDao
 }

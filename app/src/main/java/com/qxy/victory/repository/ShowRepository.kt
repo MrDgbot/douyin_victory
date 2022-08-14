@@ -3,7 +3,7 @@ package com.qxy.victory.repository
 import androidx.annotation.WorkerThread
 import com.qxy.victory.model.MovieItem
 import com.qxy.victory.network.DyClient
-import com.qxy.victory.persistence.TvShowDao
+import com.qxy.victory.persistence.ShowDao
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onFailure
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class ShowRepository @Inject constructor(
   private val dyClient: DyClient,
-  private val pokemonDao: TvShowDao,
+  private val pokemonDao: ShowDao,
   private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
 

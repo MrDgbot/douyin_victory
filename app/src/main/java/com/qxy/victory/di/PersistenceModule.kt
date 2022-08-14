@@ -66,7 +66,7 @@ object PersistenceModule {
 
   @Provides
   @Singleton
-  fun provideTvShowDao(appDatabase: AppDatabase): TvShowDao {
+  fun provideTvShowDao(appDatabase: AppDatabase): ShowDao {
     return appDatabase.tvShowDao()
   }
 

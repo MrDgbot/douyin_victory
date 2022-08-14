@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qxy.victory.ui.activity.movie.MovieRankingViewModel
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.bindables.BindingListAdapter
-import com.qxy.victory.ui.fragment.tvshow.TVShowViewModel
+import com.qxy.victory.ui.activity.show.ShowViewModel
 import com.skydoves.whatif.whatIfNotNullAs
 
 object RecyclerViewBinding {
@@ -57,7 +57,7 @@ object RecyclerViewBinding {
 
   @JvmStatic
   @BindingAdapter("paginationDyTVShowList")
-  fun paginationDyTVShowList(view: RecyclerView, viewModel: TVShowViewModel) {
+  fun paginationDyTVShowList(view: RecyclerView, viewModel: ShowViewModel) {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading },

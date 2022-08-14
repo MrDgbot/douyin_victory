@@ -19,7 +19,7 @@ package com.qxy.victory.di
 import com.qxy.victory.network.DyClient
 import com.qxy.victory.persistence.PokemonDao
 import com.qxy.victory.persistence.PokemonInfoDao
-import com.qxy.victory.persistence.TvShowDao
+import com.qxy.victory.persistence.ShowDao
 import com.qxy.victory.repository.DetailRepository
 import com.qxy.victory.repository.MovieRepository
 import com.qxy.victory.repository.ShowRepository
@@ -59,9 +59,9 @@ object RepositoryModule {
   @ViewModelScoped
   fun provideTVShowRepository(
     pokedexClient: DyClient,
-    tvShowDao: TvShowDao,
+    showDao: ShowDao,
     coroutineDispatcher: CoroutineDispatcher
   ): ShowRepository {
-    return ShowRepository(pokedexClient, tvShowDao, coroutineDispatcher)
+    return ShowRepository(pokedexClient, showDao, coroutineDispatcher)
   }
 }
