@@ -26,7 +26,6 @@ import com.skydoves.bindables.binding
 import com.qxy.victory.R
 import com.qxy.victory.databinding.ItemMovieBinding
 import com.qxy.victory.model.MovieItem
-import com.qxy.victory.ui.activity.details.DetailActivity
 
 class PokemonAdapter : BindingListAdapter<MovieItem, PokemonAdapter.PokemonViewHolder>(diffUtil) {
 
@@ -48,8 +47,8 @@ class PokemonAdapter : BindingListAdapter<MovieItem, PokemonAdapter.PokemonViewH
           ?: return@setOnClickListener
         val currentClickedAt = SystemClock.elapsedRealtime()
         if (currentClickedAt - onClickedAt > binding.transformationLayout.duration) {
-          DetailActivity.startActivity(binding.transformationLayout, getItem(position))
-          onClickedAt = currentClickedAt
+//          DetailActivity.startActivity(binding.transformationLayout, getItem(position))
+//          onClickedAt = currentClickedAt
         }
       }
     }

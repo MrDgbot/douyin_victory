@@ -1,6 +1,8 @@
 package com.qxy.victory.ui.activity.show
 
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import com.qxy.victory.R
@@ -21,6 +23,10 @@ class ShowActivity : BindingActivity<ActivityShowBinding>(R.layout.activity_show
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      // 设置状态栏透明
+      window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    }
     binding {
       adapter = ShowAdapter()
       vm = viewModel
