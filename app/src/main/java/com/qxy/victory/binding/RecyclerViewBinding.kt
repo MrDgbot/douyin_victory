@@ -19,6 +19,7 @@ package com.qxy.victory.binding
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.qxy.victory.ui.activity.movie.MovieRankingViewModel
+import com.qxy.victory.ui.activity.series.SeriesRankingViewModel
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.bindables.BindingListAdapter
 import com.qxy.victory.ui.activity.show.ShowViewModel
@@ -58,6 +59,19 @@ object RecyclerViewBinding {
   @JvmStatic
   @BindingAdapter("paginationDyTVShowList")
   fun paginationDyTVShowList(view: RecyclerView, viewModel: ShowViewModel) {
+    RecyclerViewPaginator(
+      recyclerView = view,
+      isLoading = { viewModel.isLoading },
+      loadMore = { },
+      onLast = { true }
+    ).run {
+      threshold = 8
+    }
+  }
+
+  @JvmStatic
+  @BindingAdapter("paginationDySeriesList")
+  fun paginationDySeriesList(view: RecyclerView, viewModel: SeriesRankingViewModel) {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading },

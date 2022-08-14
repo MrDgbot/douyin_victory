@@ -22,12 +22,14 @@ import androidx.room.TypeConverters
 import com.qxy.victory.model.ActorItem
 import com.qxy.victory.model.MovieItem
 import com.qxy.victory.model.PokemonInfo
+import com.qxy.victory.model.SeriesItem
 
-@Database(entities = [MovieItem::class, PokemonInfo::class, ActorItem::class], version = 2, exportSchema = true)
+@Database(entities = [MovieItem::class, PokemonInfo::class, ActorItem::class, SeriesItem::class], version = 2, exportSchema = true)
 @TypeConverters(value = [TypeResponseConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun pokemonDao(): PokemonDao
   abstract fun tvShowDao(): ShowDao
+  abstract fun seriesDao(): SeriesDao
   abstract fun pokemonInfoDao(): PokemonInfoDao
 }
