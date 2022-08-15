@@ -51,16 +51,13 @@
       android:launchMode="singleTask"
       android:taskAffinity="com.qxy.victory" />
     <activity
-      android:name=".ui.activity.movie.MovieRankingActivity"
+      android:name="com.qxy.victory.ui.activity.rank.movie.MovieActivity"
       android:launchMode="singleTop" />
     <activity
-      android:name=".ui.activity.details.DetailActivity"
+      android:name="com.qxy.victory.ui.activity.rank.movie.show.ShowActivity"
       android:launchMode="singleTop" />
     <activity
-      android:name=".ui.activity.show.ShowActivity"
-      android:launchMode="singleTop" />
-    <activity
-      android:name=".ui.activity.series.SeriesRankingActivity"
+      android:name="com.qxy.victory.ui.activity.rank.movie.series.SeriesActivity"
       android:launchMode="standard"/>
 
     <provider

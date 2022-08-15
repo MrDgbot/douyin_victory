@@ -10,7 +10,7 @@
 
     <variable
       name="vm"
-      type="com.qxy.victory.ui.activity.show.ShowViewModel" />
+      type="com.qxy.victory.ui.activity.rank.show.ShowViewModel" />
 
     <variable
       name="adapter"
@@ -26,7 +26,7 @@
     <include
       android:id="@+id/appbar"
       layout="@layout/appbar_custom"
-      binding:title="@{@string/movie_ranking}" />
+      binding:title="@{@string/shows_ranking}" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerView"
@@ -43,9 +43,9 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/appbar"
-      app:paginationDyTVShowList="@{vm}"
+      app:paginationRankList="@{vm}"
       app:spanCount="1"
-      app:submitList="@{vm.tvShowItemList}"
+      app:submitList="@{vm.rankItemList}"
       app:toast="@{vm.toastMessage}"
       tools:listitem="@layout/item_rank" />
 

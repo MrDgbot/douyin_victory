@@ -1,36 +1,33 @@
-package com.qxy.victory.ui.activity.movie
+package com.qxy.victory.ui.activity.rank.movie.show
 
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.qxy.victory.R
+import com.qxy.victory.databinding.ActivityShowBinding
+import com.qxy.victory.ui.activity.rank.show.ShowViewModel
+import com.qxy.victory.ui.adapter.RankAdapter
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.intentOf
-import com.qxy.victory.R
-import com.qxy.victory.databinding.ActivityMovieBinding
-import com.qxy.victory.ui.adapter.RankAdapter
 import com.skydoves.transformationlayout.TransformationCompat
-import com.skydoves.transformationlayout.TransformationCompat.onTransformationEndContainerApplyParams
 import com.skydoves.transformationlayout.TransformationLayout
+import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieRankingActivity : BindingActivity<ActivityMovieBinding>(R.layout.activity_movie) {
-
+class ShowActivity : BindingActivity<ActivityShowBinding>(R.layout.activity_show) {
   @get:VisibleForTesting
-  internal val viewModel: MovieRankingViewModel by viewModels()
-
+  internal val viewModel: ShowViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    onTransformationEndContainerApplyParams(this)
+    onTransformationStartContainer()
     super.onCreate(savedInstanceState)
-    
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       // 设置状态栏透明
       window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
-    
     binding {
       vm = viewModel
       adapter = RankAdapter()
@@ -39,11 +36,11 @@ class MovieRankingActivity : BindingActivity<ActivityMovieBinding>(R.layout.acti
 
   companion object {
     @VisibleForTesting
-    internal const val EXTRA_POKEMON = "Movie"
+    internal const val EXTRA_POKEMON = "EXTRA_POKEMON"
 
     fun startActivity(transformationLayout: TransformationLayout) =
-      transformationLayout.context.intentOf<MovieRankingActivity> {
-        putExtra(EXTRA_POKEMON to 1)
+      transformationLayout.context.intentOf<ShowActivity> {
+        //putExtra(EXTRA_POKEMON to actorItem)
         TransformationCompat.startActivity(transformationLayout, intent)
       }
   }

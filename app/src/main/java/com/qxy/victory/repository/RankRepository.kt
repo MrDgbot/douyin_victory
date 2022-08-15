@@ -28,38 +28,34 @@ class RankRepository @Inject constructor(
     onComplete: () -> Unit,
     onError: (String?) -> Unit
   ) = flow {
-    var rankList = rankDao.getList(page, rankType)
+    Timber.d("Page ${page}")
+    val requestPage = if (page == -1) 0 else page
+
+    var rankList = rankDao.getList(requestPage, rankType)
     if (rankList.isEmpty()) {
-      val response = dyClient.oauthClientToken()
-      response.suspendOnSuccess {
-        //val response2 = dyClient.discoveryRankList(rankType, data.data.accessToken)
-        var response2 = dyClient.getSeriesMockDta()
-        when (rankType) {
-          1 -> response2 = dyClient.getMovieMockData()
-          2 -> response2 = dyClient.getSeriesMockDta()
-          3 -> response2 = dyClient.getTvMockData()
-        }
 
-        response2.suspendOnSuccess {
-          rankList = data.data.list
-          Timber.d(data.data.list.toString())
-          for ((index, rank) in rankList.withIndex()) {
-            rank.page = page
-            rank.index = index + 1
-          }
+      //val response2 = dyClient.discoveryRankList(rankType, data.data.accessToken)
+      val response2 = dyClient.discoveryMockRankList(rankType)
 
-          rankDao.insertList(rankList)
-          emit(rankDao.getAllList(page, rankType))
-        }.onFailure {
-          Timber.d(message())
-          onError(message())
+      response2.suspendOnSuccess {
+        rankList = data.data.list
+        Timber.d(rankList.toString())
+        Timber.d(data.data.list.toString())
+        for ((index, rank) in rankList.withIndex()) {
+          rank.page = requestPage
+          rank.index = index + 1
         }
+        rankDao.insertList(rankList)
+        emit(rankDao.getAllList(requestPage, rankType))
+      }.onFailure {
+        Timber.d(message())
+        onError(message())
 
       }.onFailure { // handles the all error cases from the API request fails.
         onError(message())
       }
     } else {
-      emit(rankDao.getAllList(page, rankType))
+      emit(rankDao.getAllList(requestPage, rankType))
     }
   }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
 

@@ -8,9 +8,9 @@ import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.viewModels
 import com.qxy.victory.R
 import com.qxy.victory.databinding.HomeFragmentBinding
-import com.qxy.victory.ui.activity.movie.MovieRankingActivity
-import com.qxy.victory.ui.activity.series.SeriesRankingActivity
-import com.qxy.victory.ui.activity.show.ShowActivity
+import com.qxy.victory.ui.activity.rank.movie.MovieActivity
+import com.qxy.victory.ui.activity.rank.movie.series.SeriesActivity
+import com.qxy.victory.ui.activity.rank.movie.show.ShowActivity
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +29,7 @@ class HomeFragment : BindingFragment<HomeFragmentBinding>(R.layout.home_fragment
     context ?: return binding.root
 
     binding.btnMovie.setOnClickListener(View.OnClickListener {
-      MovieRankingActivity.startActivity(binding.transformationLayout)
+      MovieActivity.startActivity(binding.transformationLayout)
     })
 
     binding.btnShows.setOnClickListener(View.OnClickListener {
@@ -37,7 +37,7 @@ class HomeFragment : BindingFragment<HomeFragmentBinding>(R.layout.home_fragment
     })
 
     binding.btnTv.setOnClickListener(View.OnClickListener {
-      SeriesRankingActivity.startActivity(binding.transformationLayout)
+      SeriesActivity.startActivity(binding.transformationLayout)
     })
 
     return binding.root

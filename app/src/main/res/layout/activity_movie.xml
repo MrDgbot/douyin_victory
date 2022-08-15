@@ -8,7 +8,7 @@
 
     <variable
       name="vm"
-      type="com.qxy.victory.ui.activity.movie.MovieRankingViewModel" />
+      type="com.qxy.victory.ui.activity.rank.movie.MovieViewModel" />
 
     <variable
       name="adapter"
@@ -43,9 +43,9 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/appbar"
-      app:paginationDyMovieList="@{vm}"
+      app:paginationRankList="@{vm}"
       app:spanCount="1"
-      app:submitList="@{vm.movieItemList}"
+      app:submitList="@{vm.rankItemList}"
       app:toast="@{vm.toastMessage}"
       tools:listitem="@layout/item_rank" />
 

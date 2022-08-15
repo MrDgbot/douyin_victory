@@ -15,7 +15,7 @@ interface DyService {
     @Query("grant_type") grant_type: String
   ): ApiResponse<ClintAuthResp>
 
-  // 获取影视排行榜
+  // 影视排行榜
   @GET(OauthUrl.rankItem)
   @Headers("Content-Type:application/json")
   suspend fun discoveryRankList(
@@ -23,22 +23,12 @@ interface DyService {
     @Query("type") type: Int
   ): ApiResponse<RankResp>
 
-  /// Mock综艺榜
+  /// Mock影视排行榜
   @Headers("Content-Type:application/json")
-  @GET("https://mpandaer.github.io/zongyi.json")//api/getShow
-  suspend fun getMockSeriesData(
+  @GET("https://mock.apifox.cn/m1/1435365-0-default/discovery/ent/rank/item/")
+  suspend fun getMockRank(
+    @Query("apifoxApiId") apiId: Int,
+    @Query("type") type: Int
   ): ApiResponse<RankResp>
-
-  // Mock电影榜
-  @Headers("Content-Type:application/json")
-  @GET("https://mpandaer.github.io/movie.json")
-  suspend fun getMockMovieData(
-  ):ApiResponse<RankResp>
-
-  // Mock综艺
-  @Headers("Content-Type:application/json")
-  @GET("https://mpandaer.github.io/tv.json")
-  suspend fun getMockTvData(
-  ):ApiResponse<RankResp>
 
 }

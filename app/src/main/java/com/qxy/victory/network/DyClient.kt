@@ -26,33 +26,12 @@ class DyClient @Inject constructor(
       token = token
     )
 
-  suspend fun getSeriesMockDta(
-  ): ApiResponse<RankResp> = dyService.getMockSeriesData()
+  suspend fun discoveryMockRankList(
+    type: Int,
+  ): ApiResponse<RankResp> =
+    dyService.getMockRank(
+      type = type,
+      apiId = 33871518
+    )
 
-  //获取电影榜
-  suspend fun getMovieMockData(
-  ):ApiResponse<RankResp> = dyService.getMockMovieData();
-
-  //获取电影榜
-  suspend fun getTvMockData(
-  ):ApiResponse<RankResp> = dyService.getMockTvData();
-
-//  suspend fun fetchPokemonList(
-//    page: Int
-//  ): ApiResponse<PokemonResponse> =
-//    pokedexService.fetchPokemonList(
-//      limit = PAGING_SIZE,
-//      offset = page * PAGING_SIZE
-//    )
-//
-//  suspend fun fetchPokemonInfo(
-//    name: String
-//  ): ApiResponse<PokemonInfo> =
-//    pokedexService.fetchPokemonInfo(
-//      name = name
-//    )
-//
-//  companion object {
-//    private const val PAGING_SIZE = 20
-//  }
 }

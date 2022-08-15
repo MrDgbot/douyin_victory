@@ -18,11 +18,9 @@ package com.qxy.victory.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.qxy.victory.ui.activity.movie.MovieRankingViewModel
-import com.qxy.victory.ui.activity.series.SeriesRankingViewModel
+import com.qxy.victory.ui.activity.rank.BaseRankViewModel
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.bindables.BindingListAdapter
-import com.qxy.victory.ui.activity.show.ShowViewModel
 import com.skydoves.whatif.whatIfNotNullAs
 
 object RecyclerViewBinding {
@@ -44,8 +42,8 @@ object RecyclerViewBinding {
   }
 
   @JvmStatic
-  @BindingAdapter("paginationDyMovieList")
-  fun paginationDyMovieList(view: RecyclerView, viewModel: MovieRankingViewModel) {
+  @BindingAdapter("paginationRankList")
+  fun paginationRankList(view: RecyclerView, viewModel: BaseRankViewModel) {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading },
@@ -56,29 +54,4 @@ object RecyclerViewBinding {
     }
   }
 
-  @JvmStatic
-  @BindingAdapter("paginationDyTVShowList")
-  fun paginationDyTVShowList(view: RecyclerView, viewModel: ShowViewModel) {
-    RecyclerViewPaginator(
-      recyclerView = view,
-      isLoading = { viewModel.isLoading },
-      loadMore = { },
-      onLast = { true }
-    ).run {
-      threshold = 8
-    }
-  }
-
-  @JvmStatic
-  @BindingAdapter("paginationDySeriesList")
-  fun paginationDySeriesList(view: RecyclerView, viewModel: SeriesRankingViewModel) {
-    RecyclerViewPaginator(
-      recyclerView = view,
-      isLoading = { viewModel.isLoading },
-      loadMore = { },
-      onLast = { true }
-    ).run {
-      threshold = 8
-    }
-  }
 }

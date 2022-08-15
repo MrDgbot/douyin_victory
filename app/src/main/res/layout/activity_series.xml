@@ -9,7 +9,7 @@
 
     <variable
       name="vm"
-      type="com.qxy.victory.ui.activity.series.SeriesRankingViewModel" />
+      type="com.qxy.victory.ui.activity.rank.series.SeriesViewModel" />
 
     <variable
       name="adapter"
@@ -26,7 +26,7 @@
     <include
       android:id="@+id/appbar"
       layout="@layout/appbar_custom"
-      binding:title="@{@string/movie_ranking}" />
+      binding:title="@{@string/tv_ranking}" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerView"
@@ -44,7 +44,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/appbar"
       app:layout_constraintVertical_bias="0.0"
-      app:paginationDySeriesList="@{vm}"
+      app:paginationRankList="@{vm}"
       app:spanCount="1"
       app:submitList="@{vm.rankItemList}"
       app:toast="@{vm.toastMessage}"
@@ -59,6 +59,18 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+      android:id="@+id/refresh"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:onClick="@{(view) -> vm.refreshList()}"
+      android:text="@string/refresh"
+      app:gone="@{!vm.refresh}"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+      app:layout_constraintStart_toStartOf="@+id/recyclerView"
+      app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,4 +1,4 @@
-package com.qxy.victory.ui.activity.series
+package com.qxy.victory.ui.activity.rank
 
 import androidx.annotation.MainThread
 import androidx.databinding.Bindable
@@ -8,20 +8,26 @@ import com.qxy.victory.repository.RankRepository
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber
 import javax.inject.Inject
 
-
-@HiltViewModel
-class SeriesRankingViewModel @Inject constructor(
+open class BaseRankViewModel @Inject constructor(
+  private var type: Int,
   private val rankRepository: RankRepository
 ) : BindingViewModel() {
 
+  init {
+    Timber.d("init BaseRankViewModel")
+  }
+
   @get:Bindable
   var isLoading: Boolean by bindingProperty(false)
+    private set
+
+  @get:Bindable
+  var isRefresh: Boolean by bindingProperty(false)
     private set
 
   @get:Bindable
@@ -32,10 +38,18 @@ class SeriesRankingViewModel @Inject constructor(
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
     rankRepository.fetchRankList(
       page = page,
-      rankType = 2,
-      onStart = { isLoading = true },
-      onComplete = { isLoading = false },
-      onError = { toastMessage = it }
+      rankType = type,
+      onStart = {
+        isLoading = true
+        isRefresh = false
+      },
+      onError = {
+        toastMessage = it
+        isRefresh = true
+      },
+      onComplete = {
+        isLoading = false
+      },
     )
   }
 
@@ -46,17 +60,25 @@ class SeriesRankingViewModel @Inject constructor(
     emptyList()
   )
 
-  init {
-    Timber.d("init SeriesRankingViewModel")
+  ///  刷新按钮事件
+  @MainThread
+  fun refreshList() {
+    if (!isLoading) {
+      // -1情况为刷新之后请求，但实际请求页为0[RankRepository类中修改]
+      pokemonFetchingIndex.value = if (pokemonFetchingIndex.value == -1) 0 else -1
+    }
   }
 
-  @get:Bindable
-  val pushPage: Int by bindingProperty(0)
 
   @MainThread
   fun fetchNextPokemonList() {
     if (!isLoading) {
-      pokemonFetchingIndex.value++
+      // -1情况为刷新之后请求，但实际请求页为0
+      if (pokemonFetchingIndex.value == -1) {
+        pokemonFetchingIndex.value = 1
+      } else {
+        pokemonFetchingIndex.value++
+      }
     }
   }
 }
