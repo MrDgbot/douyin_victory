@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package com.qxy.victory.persistence
+package com.qxy.victory.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.qxy.victory.model.PokemonInfo
-
-@Dao
-interface PokemonInfoDao {
-
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  suspend fun insertPokemonInfo(pokemonInfo: PokemonInfo)
-
-  @Query("SELECT * FROM PokemonInfo WHERE name = :name_")
-  suspend fun getPokemonInfo(name_: String): PokemonInfo?
-}
+/**
+ * A customized pokemon error response.
+ *
+ * @param code A network response code.
+ * @param message A network error message.
+ */
+data class CommonErrorResponse(
+  val code: Int,
+  val message: String?
+)

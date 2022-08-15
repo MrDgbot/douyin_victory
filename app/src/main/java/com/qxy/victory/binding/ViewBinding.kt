@@ -32,7 +32,7 @@ import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
-import com.qxy.victory.model.PokemonInfo
+import com.qxy.victory.model.RankItem
 import com.qxy.victory.utils.PokemonTypeUtils
 import com.qxy.victory.utils.SpacesItemDecoration
 import com.skydoves.androidribbon.RibbonRecyclerView
@@ -126,14 +126,14 @@ object ViewBinding {
 
   @JvmStatic
   @BindingAdapter("bindPokemonTypes")
-  fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<PokemonInfo.TypeResponse>?) {
+  fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<RankItem>?) {
     types.whatIfNotNullOrEmpty {
       recyclerView.clear()
       for (type in it) {
         with(recyclerView) {
           addRibbon(
             ribbonView(context) {
-              setText(type.type.name)
+              setText(type.name)
               setTextColor(Color.WHITE)
               setPaddingLeft(84f)
               setPaddingRight(84f)
@@ -143,7 +143,7 @@ object ViewBinding {
               setRibbonRadius(120f)
               setTextStyle(Typeface.BOLD)
               setRibbonBackgroundColorResource(
-                PokemonTypeUtils.getTypeColor(type.type.name)
+                PokemonTypeUtils.getTypeColor(type.name)
               )
             }.apply {
               maxLines = 1

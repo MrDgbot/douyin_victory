@@ -1,9 +1,7 @@
 package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
-import com.qxy.victory.model.MovieResp
-import com.qxy.victory.model.SeriesResp
-import com.qxy.victory.model.ShowResp
+import com.qxy.victory.model.RankResp
 import com.qxy.victory.utils.Constants
 import com.skydoves.sandwich.ApiResponse
 import javax.inject.Inject
@@ -11,7 +9,7 @@ import javax.inject.Inject
 class DyClient @Inject constructor(
   private val dyService: DyService
 ) {
-
+  // 请求网页授权
   suspend fun oauthClientToken(): ApiResponse<ClintAuthResp> =
     dyService.oauthClientToken(
       client_key = Constants.CLIENT_KEY,
@@ -19,44 +17,25 @@ class DyClient @Inject constructor(
       grant_type = "client_credential"
     )
 
-
-  suspend fun discoveryMovieList(
+  suspend fun discoveryRankList(
     type: Int,
     token: String
-  ): ApiResponse<MovieResp> =
-    dyService.discoveryMovieList(
-      type = type,
-      token = token
-    )
-
-  suspend fun discoverySeriesList(
-    type: Int,
-    token: String
-  ): ApiResponse<SeriesResp> =
-    dyService.discoverySeriesList(
+  ): ApiResponse<RankResp> =
+    dyService.discoveryRankList(
       type = type,
       token = token
     )
 
   suspend fun getSeriesMockDta(
-  ): ApiResponse<SeriesResp> = dyService.getMockSeriesData()
+  ): ApiResponse<RankResp> = dyService.getMockSeriesData()
 
   //获取电影榜
   suspend fun getMovieMockData(
-  ):ApiResponse<MovieResp> = dyService.getMockMovieData();
+  ):ApiResponse<RankResp> = dyService.getMockMovieData();
 
   //获取电影榜
   suspend fun getTvMockData(
-  ):ApiResponse<ShowResp> = dyService.getMockTvData();
-
-  suspend fun discoveryShowList(
-    type: Int,
-    token: String
-  ): ApiResponse<ShowResp> =
-    dyService.discoveryShowList(
-      type = type,
-      token = token
-    )
+  ):ApiResponse<RankResp> = dyService.getMockTvData();
 
 //  suspend fun fetchPokemonList(
 //    page: Int

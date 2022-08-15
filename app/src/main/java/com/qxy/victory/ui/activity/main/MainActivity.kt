@@ -24,8 +24,9 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     val myFragmentActivity: FragmentActivity = this
     binding {
-      adapter = ViewPagerAdapter(myFragmentActivity, 2)
       vm = viewModel
+      adapter = ViewPagerAdapter(myFragmentActivity, 2)
+
     }
   }
 }

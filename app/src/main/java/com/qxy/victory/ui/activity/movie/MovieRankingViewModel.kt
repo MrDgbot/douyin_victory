@@ -23,8 +23,8 @@ import androidx.lifecycle.viewModelScope
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import com.qxy.victory.model.MovieItem
-import com.qxy.victory.repository.MovieRepository
+import com.qxy.victory.model.RankItem
+import com.qxy.victory.repository.RankRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -33,7 +33,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieRankingViewModel @Inject constructor(
-  private val movieRepository: MovieRepository
+  private val rankRepository: RankRepository
 ) : BindingViewModel() {
 
   @get:Bindable
@@ -46,8 +46,9 @@ class MovieRankingViewModel @Inject constructor(
 
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
-    movieRepository.fetchMovieList(
+    rankRepository.fetchRankList(
       page = page,
+      rankType = 1,
       onStart = { isLoading = true },
       onComplete = { isLoading = false },
       onError = { toastMessage = it }
@@ -56,7 +57,7 @@ class MovieRankingViewModel @Inject constructor(
 
 
   @get:Bindable
-  val movieItemList: List<MovieItem> by pokemonListFlow.asBindingProperty(
+  val movieItemList: List<RankItem> by pokemonListFlow.asBindingProperty(
     viewModelScope,
     emptyList()
   )

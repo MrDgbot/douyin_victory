@@ -43,34 +43,21 @@ object PersistenceModule {
   @Singleton
   fun provideAppDatabase(
     application: Application,
-    typeResponseConverter: TypeResponseConverter,
     stringListTypeConverter: StringListTypeConverter
   ): AppDatabase {
     return Room
       .databaseBuilder(application, AppDatabase::class.java, "Victory.db")
       .fallbackToDestructiveMigration()
-      .addTypeConverter(typeResponseConverter)
       .addTypeConverter(stringListTypeConverter)
       .build()
   }
 
   @Provides
   @Singleton
-  fun providePokemonDao(appDatabase: AppDatabase): PokemonDao {
-    return appDatabase.pokemonDao()
+  fun provideRankDao(appDatabase: AppDatabase): RankDao {
+    return appDatabase.rankDao()
   }
 
-  @Provides
-  @Singleton
-  fun providePokemonInfoDao(appDatabase: AppDatabase): PokemonInfoDao {
-    return appDatabase.pokemonInfoDao()
-  }
-
-  @Provides
-  @Singleton
-  fun provideTvShowDao(appDatabase: AppDatabase): ShowDao {
-    return appDatabase.tvShowDao()
-  }
 
   @Provides
   @Singleton
@@ -78,15 +65,4 @@ object PersistenceModule {
     return StringListTypeConverter(moshi)
   }
 
-  @Provides
-  @Singleton
-  fun provideTypeResponseConverter(moshi: Moshi): TypeResponseConverter {
-    return TypeResponseConverter(moshi)
-  }
-
-  @Provides
-  @Singleton
-  fun provideSeriesDao(appDatabase: AppDatabase): SeriesDao {
-    return appDatabase.seriesDao()
-  }
 }

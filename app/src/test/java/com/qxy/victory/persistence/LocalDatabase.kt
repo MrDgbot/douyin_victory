@@ -35,7 +35,7 @@ abstract class LocalDatabase {
     val moshi = Moshi.Builder().build()
     db = Room.inMemoryDatabaseBuilder(getApplicationContext(), AppDatabase::class.java)
       .allowMainThreadQueries()
-      .addTypeConverter(TypeResponseConverter(moshi))
+      .addTypeConverter(StringListTypeConverter(moshi))
       .build()
   }
 

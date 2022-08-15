@@ -1,9 +1,7 @@
 package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
-import com.qxy.victory.model.MovieResp
-import com.qxy.victory.model.SeriesResp
-import com.qxy.victory.model.ShowResp
+import com.qxy.victory.model.RankResp
 import com.qxy.victory.network.url.OauthUrl
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.*
@@ -17,53 +15,30 @@ interface DyService {
     @Query("grant_type") grant_type: String
   ): ApiResponse<ClintAuthResp>
 
+  // 获取影视排行榜
   @GET(OauthUrl.rankItem)
   @Headers("Content-Type:application/json")
-  suspend fun discoveryMovieList(
+  suspend fun discoveryRankList(
     @Header("access-token") token: String,
     @Query("type") type: Int
-  ): ApiResponse<MovieResp>
+  ): ApiResponse<RankResp>
 
-  @Headers("Content-Type:application/json")
-  @GET("/discovery/ent/rank/item/")//api/getShow
-  //@GET("api/getShow")
-  suspend fun discoverySeriesList(
-    @Header("access-token") token: String,
-    @Query("type") type: Int
-  ): ApiResponse<SeriesResp>
-
+  /// Mock综艺榜
   @Headers("Content-Type:application/json")
   @GET("https://mpandaer.github.io/zongyi.json")//api/getShow
   suspend fun getMockSeriesData(
-  ): ApiResponse<SeriesResp>
+  ): ApiResponse<RankResp>
 
-  //Mock电影榜
+  // Mock电影榜
   @Headers("Content-Type:application/json")
   @GET("https://mpandaer.github.io/movie.json")
   suspend fun getMockMovieData(
-  ):ApiResponse<MovieResp>
+  ):ApiResponse<RankResp>
 
-  //Mock综艺
+  // Mock综艺
   @Headers("Content-Type:application/json")
   @GET("https://mpandaer.github.io/tv.json")
   suspend fun getMockTvData(
-  ):ApiResponse<ShowResp>
+  ):ApiResponse<RankResp>
 
-  @Headers("Content-Type:application/json")
-  @GET("/discovery/ent/rank/item/")//api/getShow
-  //@GET("api/getShow")
-  suspend fun discoveryShowList(
-    @Header("access-token") token: String,
-    @Query("type") type: Int
-  ): ApiResponse<ShowResp>
-
-//
-//  @GET("pokemon")
-//  suspend fun fetchPokemonList(
-//    @Query("limit") limit: Int = 20,
-//    @Query("offset") offset: Int = 0
-//  ): ApiResponse<PokemonResponse>
-//
-//  @GET("pokemon/{name}")
-//  suspend fun fetchPokemonInfo(@Path("name") name: String): ApiResponse<PokemonInfo>
 }

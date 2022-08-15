@@ -9,7 +9,7 @@ import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.intentOf
 import com.qxy.victory.R
 import com.qxy.victory.databinding.ActivityMovieBinding
-import com.qxy.victory.ui.adapter.PokemonAdapter
+import com.qxy.victory.ui.adapter.RankAdapter
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationCompat.onTransformationEndContainerApplyParams
 import com.skydoves.transformationlayout.TransformationLayout
@@ -33,7 +33,7 @@ class MovieRankingActivity : BindingActivity<ActivityMovieBinding>(R.layout.acti
     
     binding {
       vm = viewModel
-      adapter = PokemonAdapter()
+      adapter = RankAdapter()
     }
   }
 

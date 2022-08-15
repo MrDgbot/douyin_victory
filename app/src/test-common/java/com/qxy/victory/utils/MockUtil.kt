@@ -16,11 +16,11 @@
 
 package com.qxy.victory.utils
 
-import com.qxy.victory.model.MovieItem
+import com.qxy.victory.model.RankItem
 
 object MockUtil {
 
-  fun mockMovieItem() = MovieItem(
+  fun mockMovieItem() = RankItem(
     id = "1",
     page = 0,
     name = "bulbasaur",

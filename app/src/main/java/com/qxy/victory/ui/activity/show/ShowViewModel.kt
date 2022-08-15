@@ -3,8 +3,8 @@ package com.qxy.victory.ui.activity.show
 import androidx.annotation.MainThread
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
-import com.qxy.victory.model.ShowItem
-import com.qxy.victory.repository.ShowRepository
+import com.qxy.victory.model.RankItem
+import com.qxy.victory.repository.RankRepository
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowViewModel  @Inject constructor(
-  private val showRepository: ShowRepository
+  private val rankRepository: RankRepository
 ) : BindingViewModel() {
 
   @get:Bindable
@@ -29,8 +29,9 @@ class ShowViewModel  @Inject constructor(
 
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
-    showRepository.fetchShowList(
+    rankRepository.fetchRankList(
       page = page,
+      rankType = 3,
       onStart = { isLoading = true },
       onComplete = { isLoading = false },
       onError = { toastMessage = it }
@@ -38,7 +39,7 @@ class ShowViewModel  @Inject constructor(
   }
 
   @get:Bindable
-  val tvShowItemList: List<ShowItem> by pokemonListFlow.asBindingProperty(viewModelScope, emptyList())
+  val tvShowItemList: List<RankItem> by pokemonListFlow.asBindingProperty(viewModelScope, emptyList())
 
   init {
     Timber.d("init TVViewModel")

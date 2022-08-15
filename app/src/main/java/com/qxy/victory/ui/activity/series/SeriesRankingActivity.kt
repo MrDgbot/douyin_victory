@@ -25,7 +25,7 @@ import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.intentOf
 import com.qxy.victory.R
 import com.qxy.victory.databinding.ActivitySeriesBinding
-import com.qxy.victory.ui.adapter.SeriesItemAdapter
+import com.qxy.victory.ui.adapter.RankAdapter
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationCompat.onTransformationEndContainerApplyParams
 import com.skydoves.transformationlayout.TransformationLayout
@@ -47,7 +47,7 @@ class SeriesRankingActivity : BindingActivity<ActivitySeriesBinding>(R.layout.ac
     }
     binding {
       vm = viewModel
-      adapter = SeriesItemAdapter()
+      adapter = RankAdapter()
     }
   }
 

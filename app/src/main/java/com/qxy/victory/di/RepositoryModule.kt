@@ -17,12 +17,8 @@
 package com.qxy.victory.di
 
 import com.qxy.victory.network.DyClient
-import com.qxy.victory.persistence.PokemonDao
-import com.qxy.victory.persistence.PokemonInfoDao
-import com.qxy.victory.persistence.SeriesDao
-import com.qxy.victory.repository.DetailRepository
-import com.qxy.victory.repository.MovieRepository
-import com.qxy.victory.repository.SeriesRepository
+import com.qxy.victory.persistence.RankDao
+import com.qxy.victory.repository.RankRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,29 +34,9 @@ object RepositoryModule {
   @ViewModelScoped
   fun provideMainRepository(
     dyClient: DyClient,
-    pokemonDao: PokemonDao,
+    rankDao: RankDao,
     coroutineDispatcher: CoroutineDispatcher
-  ): MovieRepository {
-    return MovieRepository(dyClient, pokemonDao, coroutineDispatcher)
-  }
-
-  @Provides
-  @ViewModelScoped
-  fun provideSeriesRepository(
-    dyClient: DyClient,
-    pokemonDao: SeriesDao,
-    coroutineDispatcher: CoroutineDispatcher
-  ): SeriesRepository {
-    return SeriesRepository(dyClient, pokemonDao, coroutineDispatcher)
-  }
-
-  @Provides
-  @ViewModelScoped
-  fun provideDetailRepository(
-    pokedexClient: DyClient,
-    pokemonInfoDao: PokemonInfoDao,
-    coroutineDispatcher: CoroutineDispatcher
-  ): DetailRepository {
-    return DetailRepository(pokedexClient, pokemonInfoDao, coroutineDispatcher)
+  ): RankRepository {
+    return RankRepository(dyClient, rankDao, coroutineDispatcher)
   }
 }

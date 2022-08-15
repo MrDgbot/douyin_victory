@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SeriesResp(
+data class RankResp(
   @Json(name = "data")
   val data: Data,
   @Json(name = "extra")
@@ -15,7 +15,7 @@ data class SeriesResp(
     @Json(name = "active_time") val activeTime: String,
     @Json(name = "description") val description: String,
     @Json(name = "error_code") val errorCode: Int,
-    @Json(name = "list") val list: List<SeriesItem>
+    @Json(name = "list") val list: List<RankItem>
   )
   @JsonClass(generateAdapter = true)
   data class Extra(

@@ -24,21 +24,21 @@ import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import com.qxy.victory.R
-import com.qxy.victory.databinding.ItemSeriesBinding
-import com.qxy.victory.model.SeriesItem
+import com.qxy.victory.databinding.ItemRankBinding
+import com.qxy.victory.model.RankItem
 
-class SeriesItemAdapter : BindingListAdapter<SeriesItem, SeriesItemAdapter.SeriesViewHolder>(diffUtil) {
+class RankAdapter : BindingListAdapter<RankItem, RankAdapter.RankViewHolder>(diffUtil) {
 
   private var onClickedAt = 0L
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder =
-    parent.binding<ItemSeriesBinding>(R.layout.item_series).let(::SeriesViewHolder)
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankViewHolder =
+    parent.binding<ItemRankBinding>(R.layout.item_rank).let(::RankViewHolder)
 
-  override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) =
-    holder.bindSeriesItem(getItem(position))
+  override fun onBindViewHolder(holder: RankViewHolder, position: Int) =
+    holder.bindPokemon(getItem(position))
 
-  inner class SeriesViewHolder constructor(
-    private val binding: ItemSeriesBinding
+  inner class RankViewHolder constructor(
+    private val binding: ItemRankBinding
   ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -53,19 +53,19 @@ class SeriesItemAdapter : BindingListAdapter<SeriesItem, SeriesItemAdapter.Serie
       }
     }
 
-    fun bindSeriesItem(seriesItem: SeriesItem) {
-      binding.item = seriesItem
+    fun bindPokemon(rankItem: RankItem) {
+      binding.item = rankItem
       binding.executePendingBindings()
     }
   }
 
   companion object {
-    private val diffUtil = object : DiffUtil.ItemCallback<SeriesItem>() {
+    private val diffUtil = object : DiffUtil.ItemCallback<RankItem>() {
 
-      override fun areItemsTheSame(oldItem: SeriesItem, newItem: SeriesItem): Boolean =
+      override fun areItemsTheSame(oldItem: RankItem, newItem: RankItem): Boolean =
         oldItem.name == newItem.name
 
-      override fun areContentsTheSame(oldItem: SeriesItem, newItem: SeriesItem): Boolean =
+      override fun areContentsTheSame(oldItem: RankItem, newItem: RankItem): Boolean =
         oldItem == newItem
     }
   }

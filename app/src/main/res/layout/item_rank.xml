@@ -8,7 +8,7 @@
 
     <variable
       name="item"
-      type="com.qxy.victory.model.SeriesItem" />
+      type="com.qxy.victory.model.RankItem" />
 
   </data>
 
@@ -25,7 +25,7 @@
       android:layout_margin="6dp"
       android:background="@color/background800"
       android:foreground="?attr/selectableItemBackground"
-      app:cardBackgroundColor="@color/white_12"
+      app:cardBackgroundColor="@color/background800"
       app:cardCornerRadius="14dp"
       app:cardElevation="4dp">
 

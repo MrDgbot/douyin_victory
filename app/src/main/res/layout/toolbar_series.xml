@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/header"
+        app:layout_constraintTop_toTopOf="@id/imageView"
         app:onBackPressed="@{true}"
         app:srcCompat="@drawable/ic_arrow" />
 

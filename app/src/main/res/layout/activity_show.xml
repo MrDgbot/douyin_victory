@@ -2,6 +2,8 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:binding="http://schemas.android.com/apk/res-auto"
+
   xmlns:tools="http://schemas.android.com/tools">
 
   <data>
@@ -12,7 +14,7 @@
 
     <variable
       name="adapter"
-      type="com.qxy.victory.ui.adapter.ShowAdapter" />
+      type="com.qxy.victory.ui.adapter.RankAdapter" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,79 +23,10 @@
     android:background="@color/background"
     android:clipToPadding="false">
 
-    <ImageView
-      android:id="@+id/imageView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:adjustViewBounds="true"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/bg" />
-
-    <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appBarLayout"
-      android:layout_width="match_parent"
-      android:fitsSystemWindows="true"
-      android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      android:shadowColor="@android:color/transparent"
-      app:elevation="0dp"
-      app:layout_constraintBottom_toBottomOf="@id/imageView"
-      app:layout_constraintTop_toTopOf="parent">
-
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatImageView
-          android:id="@+id/arrow"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:padding="10dp"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="@id/header"
-          app:onBackPressed="@{true}"
-          app:srcCompat="@drawable/ic_arrow" />
-
-        <TextView
-          android:id="@+id/textView"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-          android:id="@+id/share"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="end"
-          android:padding="10dp"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="@id/header"
-          app:onBackPressed="@{true}"
-          app:srcCompat="@drawable/ic_share" />
-      </LinearLayout>
-
-      <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:autoSizeMaxTextSize="80sp"
-        android:autoSizeMinTextSize="2sp"
-        android:autoSizeTextType="uniform"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:maxLines="1"
-        android:paddingBottom="20dp"
-        android:text="@string/shows_ranking"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="36sp" />
-
-
-    </com.google.android.material.appbar.AppBarLayout>
+    <include
+      android:id="@+id/appbar"
+      layout="@layout/appbar_custom"
+      binding:title="@{@string/movie_ranking}" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerView"
@@ -109,12 +42,12 @@
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/imageView"
+      app:layout_constraintTop_toBottomOf="@id/appbar"
       app:paginationDyTVShowList="@{vm}"
       app:spanCount="1"
       app:submitList="@{vm.tvShowItemList}"
       app:toast="@{vm.toastMessage}"
-      tools:listitem="@layout/item_movie" />
+      tools:listitem="@layout/item_rank" />
 
     <ProgressBar
       android:id="@+id/progressbar"

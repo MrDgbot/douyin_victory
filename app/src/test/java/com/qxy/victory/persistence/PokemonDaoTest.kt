@@ -31,19 +31,19 @@ import org.robolectric.annotation.Config
 @Config(sdk = [23])
 class PokemonDaoTest : LocalDatabase() {
 
-  private lateinit var pokemonDao: PokemonDao
+  private lateinit var rankDao: RankDao
 
   @Before
   fun init() {
-    pokemonDao = db.pokemonDao()
+    rankDao = db.rankDao()
   }
 
   @Test
   fun insertAndLoadPokemonListTest() = runBlocking {
     val mockDataList = mockPokemonList()
-    pokemonDao.insertPokemonList(mockDataList)
+    rankDao.insertList(mockDataList)
 
-    val loadFromDB = pokemonDao.getPokemonList(page_ = 0)
+    val loadFromDB = rankDao.getList(page_ = 0,2)
     assertThat(loadFromDB.toString(), `is`(mockDataList.toString()))
 
     val mockData = mockMovieItem()
