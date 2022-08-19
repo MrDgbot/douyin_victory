@@ -24,8 +24,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/bg"
-      />
+      app:srcCompat="@drawable/bg" />
 
     <com.google.android.material.appbar.AppBarLayout
       android:id="@+id/appBarLayout"
@@ -77,9 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:autoSizeMaxTextSize="80sp"
-        android:autoSizeMinTextSize="2sp"
-        android:autoSizeTextType="uniform"
         android:gravity="center"
         android:maxLines="1"
         android:paddingBottom="20dp"

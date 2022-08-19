@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.viewModels
 import com.qxy.victory.R
-import com.qxy.victory.databinding.HomeFragmentBinding
+import com.qxy.victory.databinding.FragmentHomeBinding
 import com.qxy.victory.ui.activity.rank.movie.MovieActivity
 import com.qxy.victory.ui.activity.rank.movie.series.SeriesActivity
 import com.qxy.victory.ui.activity.rank.movie.show.ShowActivity
@@ -15,7 +15,7 @@ import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BindingFragment<HomeFragmentBinding>(R.layout.home_fragment) {
+class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
   @get:VisibleForTesting
   internal val viewModel: HomeViewModel by viewModels()
@@ -25,20 +25,20 @@ class HomeFragment : BindingFragment<HomeFragmentBinding>(R.layout.home_fragment
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    val binding = HomeFragmentBinding.inflate(inflater, container, false)
+    val binding = FragmentHomeBinding.inflate(inflater, container, false)
     context ?: return binding.root
 
-    binding.btnMovie.setOnClickListener(View.OnClickListener {
+    binding.btnMovie.setOnClickListener {
       MovieActivity.startActivity(binding.transformationLayout)
-    })
+    }
 
-    binding.btnShows.setOnClickListener(View.OnClickListener {
+    binding.btnShows.setOnClickListener{
       ShowActivity.startActivity(binding.transformationLayout)
-    })
+    }
 
-    binding.btnTv.setOnClickListener(View.OnClickListener {
+    binding.btnTv.setOnClickListener{
       SeriesActivity.startActivity(binding.transformationLayout)
-    })
+    }
 
     return binding.root
   }

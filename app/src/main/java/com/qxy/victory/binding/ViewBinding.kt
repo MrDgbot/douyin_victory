@@ -42,7 +42,6 @@ import com.skydoves.rainbow.Rainbow
 import com.skydoves.rainbow.RainbowOrientation
 import com.skydoves.rainbow.color
 import com.skydoves.whatif.whatIfNotNullOrEmpty
-import timber.log.Timber
 
 object ViewBinding {
 
@@ -183,9 +182,7 @@ object ViewBinding {
   fun bindPageChange(view: TabLayout, pager: ViewPager2) {
     view.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
       override fun onTabSelected(tab: TabLayout.Tab?) {
-        tab?.position?.let { pager.currentItem = it }
-
-        Timber.d("onTabSelected: ${tab?.position}")
+        tab?.position?.let { pager.setCurrentItem(it, false) }
       }
 
       override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -193,8 +190,6 @@ object ViewBinding {
 
       override fun onTabUnselected(tab: TabLayout.Tab?) {
       }
-
-
     })
   }
 

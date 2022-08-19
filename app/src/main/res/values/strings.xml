@@ -25,11 +25,21 @@
   <string name="home" translatable="false">首页</string>
   <string name="friend" translatable="false">朋友</string>
   <string name="message" translatable="false">消息</string>
-  <string name="mine" translatable="false">我的</string>
+  <string name="mine" translatable="false">我</string>
   <string name="movie_ranking" translatable="false">抖音电影榜单</string>
   <string name="tv_ranking" translatable="false">抖音剧集榜单</string>
   <string name="shows_ranking" translatable="false">抖音综艺榜单</string>
   <string name="release_name" translatable="false"> 播出</string>
   <string name="hot_name" translatable="false">热度 </string>
   <string name="refresh" translatable="false">刷新</string>
+  <string-array name="planets_array">
+    <item>Mercury</item>
+    <item>Venus</item>
+    <item>Earth</item>
+    <item>Mars</item>
+    <item>Jupiter</item>
+    <item>Saturn</item>
+    <item>Uranus</item>
+    <item>Neptune</item>
+  </string-array>
 </resources>
