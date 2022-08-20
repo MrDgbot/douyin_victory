@@ -2,6 +2,7 @@ package com.qxy.victory.network.douyinapi
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,16 +15,20 @@ import com.bytedance.sdk.open.aweme.share.Share
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 import com.qxy.victory.ui.activity.main.MainActivity
+import timber.log.Timber
 
 class DouYinEntryActivity : AppCompatActivity(), IApiEventHandler {
-    lateinit var douYinOpenApi: DouYinOpenApi
+  lateinit var douYinOpenApi: DouYinOpenApi
 
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    Timber.d("A抖音授权测试")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        douYinOpenApi = DouYinOpenApiFactory.create(this)
-        douYinOpenApi.handleIntent(intent, this)
-    }
+    douYinOpenApi = DouYinOpenApiFactory.create(this)
+    douYinOpenApi.handleIntent(intent, this)
+    Timber.d("B抖音授权测试")
+
+  }
 
     override fun onReq(p0: BaseReq?) {
         TODO("Not yet implemented")
