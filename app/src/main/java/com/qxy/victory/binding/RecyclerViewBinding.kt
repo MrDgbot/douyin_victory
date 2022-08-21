@@ -19,6 +19,7 @@ package com.qxy.victory.binding
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.qxy.victory.ui.activity.rank.BaseRankViewModel
+import com.qxy.victory.ui.fragment.video.VideoViewModel
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.whatif.whatIfNotNullAs
@@ -44,6 +45,19 @@ object RecyclerViewBinding {
   @JvmStatic
   @BindingAdapter("paginationRankList")
   fun paginationRankList(view: RecyclerView, viewModel: BaseRankViewModel) {
+    RecyclerViewPaginator(
+      recyclerView = view,
+      isLoading = { viewModel.isLoading },
+      loadMore = { },
+      onLast = { true }
+    ).run {
+      threshold = 8
+    }
+  }
+
+  @JvmStatic
+  @BindingAdapter("paginationVideoList")
+  fun paginationVideoList(view: RecyclerView, viewModel: VideoViewModel) {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading },

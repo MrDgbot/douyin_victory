@@ -58,6 +58,11 @@ object PersistenceModule {
     return appDatabase.rankDao()
   }
 
+  @Provides
+  @Singleton
+  fun provideVideoDao(appDatabase: AppDatabase): VideoDao {
+    return appDatabase.videoDao()
+  }
 
   @Provides
   @Singleton

@@ -2,6 +2,8 @@ package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
 import com.qxy.victory.model.RankResp
+import com.qxy.victory.model.VideoDetailResp
+import com.qxy.victory.model.VideoResp
 import com.qxy.victory.network.url.OauthUrl
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.*
@@ -31,4 +33,20 @@ interface DyService {
     @Query("type") type: Int
   ): ApiResponse<RankResp>
 
+
+  /// Mock用户具体的视频
+  @Headers("Content-Type:application/json")
+  @GET("https://www.fastmock.site/mock/26ad7e30cf27a9e2cc7477c13b148794/api/api/getVideo/")
+  suspend fun getVideo(
+//    @Query("open_id") openId: String,
+//    @Query("count") count: Int,
+  ): ApiResponse<VideoResp>
+
+  /// Mock用户具体的视频
+  @Headers("Content-Type:application/json")
+  @FormUrlEncoded
+  @POST("api/postCurrentVideo")
+  suspend fun getCurrentVideo(
+//    @Field("item_ids") itemIds:String
+  ): ApiResponse<VideoDetailResp>
 }

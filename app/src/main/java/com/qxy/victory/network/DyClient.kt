@@ -2,6 +2,8 @@ package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
 import com.qxy.victory.model.RankResp
+import com.qxy.victory.model.VideoDetailResp
+import com.qxy.victory.model.VideoResp
 import com.qxy.victory.utils.Constants
 import com.skydoves.sandwich.ApiResponse
 import javax.inject.Inject
@@ -33,5 +35,18 @@ class DyClient @Inject constructor(
       type = type,
       apiId = 33871518
     )
+
+  suspend fun discoveryMockVideoList(
+
+  ): ApiResponse<VideoResp> =
+    dyService.getVideo(
+    )
+
+  suspend fun discoveryMockVideoDetailList(
+
+  ): ApiResponse<VideoDetailResp> =
+    dyService.getCurrentVideo(
+    )
+
 
 }

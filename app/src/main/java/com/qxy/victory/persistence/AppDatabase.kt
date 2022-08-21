@@ -20,9 +20,10 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.qxy.victory.model.RankItem
+import com.qxy.victory.model.VideoData
 
 @Database(
-  entities = [RankItem::class],
+  entities = [RankItem::class,VideoData::class],
   version = 3,
   exportSchema = true
 )
@@ -30,4 +31,6 @@ import com.qxy.victory.model.RankItem
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun rankDao(): RankDao
+
+  abstract fun videoDao(): VideoDao
 }
