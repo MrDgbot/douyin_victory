@@ -1,12 +1,15 @@
 package com.qxy.victory.model
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 @Entity
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class VideoData(
   @Json(name = "cover")
@@ -33,7 +36,8 @@ data class VideoData(
   val videoId: String, // 7133996821654834464
   @Json(name = "video_status")
   val videoStatus: Int // 1
-) {
+) : Parcelable {
+  @Parcelize
   @JsonClass(generateAdapter = true)
   data class Statistics(
     @Json(name = "comment_count")
@@ -48,5 +52,5 @@ data class VideoData(
     val playCount: Int, // 43
     @Json(name = "share_count")
     val shareCount: Int // 0
-  )
+  ) : Parcelable
 }

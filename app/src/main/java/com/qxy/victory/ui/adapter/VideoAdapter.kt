@@ -10,6 +10,7 @@ import com.qxy.victory.databinding.ItemRankBinding
 import com.qxy.victory.databinding.ItemVideoBinding
 import com.qxy.victory.model.RankItem
 import com.qxy.victory.model.VideoData
+import com.qxy.victory.ui.activity.videoplay.VideoPlayActivity
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import timber.log.Timber
@@ -24,8 +25,8 @@ class VideoAdapter: BindingListAdapter<VideoData, VideoAdapter.VideoViewHolder>(
       binding.root.setOnClickListener {
         val position = bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
           ?: return@setOnClickListener
-
-        Timber.d(binding.item?.shareUrl)
+        VideoPlayActivity.startActivity(binding.transformationLayout, getItem(position))
+        //Timber.d(binding.item?.shareUrl)
 
       }
     }

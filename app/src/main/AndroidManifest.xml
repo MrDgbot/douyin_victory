@@ -36,6 +36,11 @@
     tools:ignore="AllowBackup">
 
     <activity
+      android:name=".ui.activity.videoplay.VideoPlayActivity"
+      android:exported="false"
+      android:label="@string/title_activity_video_play"
+      android:theme="@style/AppTheme.NoActionBar" />
+    <activity
       android:name=".ui.activity.main.MainActivity"
       android:exported="true"
       android:launchMode="singleTop">
