@@ -8,19 +8,193 @@
       name="vm"
       type="com.qxy.victory.ui.fragment.mine.MineViewModel" />
 
+    <variable
+      name="adapter"
+      type="com.qxy.victory.ui.adapter.MineAdapter" />
+
   </data>
 
-  <androidx.coordinatorlayout.widget.CoordinatorLayout
+  <com.qxy.victory.ui.widgets.ExtendScrollView
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-
-    <ImageView
-      android:id="@+id/imageView2"
-      android:layout_width="wrap_content"
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:id="@+id/linear_layout"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:adjustViewBounds="true"
-      app:srcCompat="@drawable/bg_mine"
-     />
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+      android:orientation="vertical">
+
+      <FrameLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/mine_bg"
+
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:scaleType="fitXY"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bg_mine" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/mine_header"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="bottom"
+          app:layout_constraintBottom_toBottomOf="parent">
+
+          <RelativeLayout
+            android:id="@+id/rl_mine"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/shape_yuan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="4dp"
+              android:scaleType="center"
+              app:circleImage="@{@string/img_test}" />
+
+
+          </RelativeLayout>
+
+          <TextView
+            android:id="@+id/tv_name_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/rl_mine"
+            app:layout_constraintTop_toTopOf="@id/rl_mine" />
+
+          <TextView
+            android:id="@+id/tv_account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="抖音号:"
+            android:textColor="@color/white_87"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/rl_mine"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_mine" />
+
+          <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_account_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_mine" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+      </FrameLayout>
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_describe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mine_bg">
+
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+      <LinearLayout
+        android:id="@+id/ll_vp_mine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_describe">
+
+        <com.google.android.material.tabs.TabLayout
+          android:id="@+id/mine_tab_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/background"
+          android:paddingBottom="5dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:tabIndicatorAnimationMode="elastic"
+          app:tabIndicatorColor="@color/yellow"
+          app:tabSelectedTextColor="@color/white"
+          app:tabTextColor="@color/white_56"
+          app:tab_change_with_animation="@{mineViewPager}">
+
+          <com.google.android.material.tabs.TabItem
+            android:id="@+id/action_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home" />
+
+          <com.google.android.material.tabs.TabItem
+            android:id="@+id/action_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/friend" />
+
+
+          <com.google.android.material.tabs.TabItem
+            android:id="@+id/action_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message" />
+
+          <com.google.android.material.tabs.TabItem
+            android:id="@+id/action_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mine" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+          android:id="@+id/mine_view_pager"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:adapter="@{adapter}"
+          app:viewpager_change="@{mineTabLayout}" />
+      </LinearLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+  </com.qxy.victory.ui.widgets.ExtendScrollView>
 </layout>

@@ -11,6 +11,7 @@ data class ClintAuthResp(
     @JsonClass(generateAdapter = true)
     data class DataResponse(
         @field:Json(name = "access_token") val accessToken: String,
+        @field:Json(name = "open_id") val openId: String?,
         @field:Json(name = "captcha") val captcha: String?,
         @field:Json(name = "desc_url") val desc_url: String?,
         @field:Json(name = "description") val description: String?,

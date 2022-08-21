@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "b18d371a2e6557d8a3be11606446fc87",
+    "identityHash": "f06c177723b5c034f204d34cee1a1e79",
     "entities": [
       {
         "tableName": "RankItem",
@@ -113,12 +113,122 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "VideoData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cover` TEXT NOT NULL, `createTime` INTEGER NOT NULL, `isReviewed` INTEGER NOT NULL, `isTop` INTEGER NOT NULL, `itemId` TEXT NOT NULL, `mediaType` INTEGER NOT NULL, `shareUrl` TEXT NOT NULL, `title` TEXT NOT NULL, `videoId` TEXT NOT NULL, `videoStatus` INTEGER NOT NULL, `commentCount` INTEGER NOT NULL, `diggCount` INTEGER NOT NULL, `downloadCount` INTEGER NOT NULL, `forwardCount` INTEGER NOT NULL, `playCount` INTEGER NOT NULL, `shareCount` INTEGER NOT NULL, PRIMARY KEY(`videoId`))",
+        "fields": [
+          {
+            "fieldPath": "cover",
+            "columnName": "cover",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createTime",
+            "columnName": "createTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isReviewed",
+            "columnName": "isReviewed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isTop",
+            "columnName": "isTop",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemId",
+            "columnName": "itemId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mediaType",
+            "columnName": "mediaType",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shareUrl",
+            "columnName": "shareUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "videoId",
+            "columnName": "videoId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "videoStatus",
+            "columnName": "videoStatus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistics.commentCount",
+            "columnName": "commentCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistics.diggCount",
+            "columnName": "diggCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistics.downloadCount",
+            "columnName": "downloadCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistics.forwardCount",
+            "columnName": "forwardCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistics.playCount",
+            "columnName": "playCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statistics.shareCount",
+            "columnName": "shareCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "videoId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b18d371a2e6557d8a3be11606446fc87')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f06c177723b5c034f204d34cee1a1e79')"
     ]
   }
 }

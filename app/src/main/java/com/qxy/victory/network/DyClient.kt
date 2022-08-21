@@ -19,6 +19,15 @@ class DyClient @Inject constructor(
       grant_type = "client_credential"
     )
 
+  // 请求客户端授权
+  suspend fun oauthAcToken(): ApiResponse<ClintAuthResp> =
+    dyService.oauthAcToken(
+      client_key = Constants.CLIENT_KEY,
+      client_secret = Constants.CLIENT_SECRET,
+      grant_type = "authorization_code",
+      code = Constants.CODE
+    )
+
   suspend fun discoveryRankList(
     type: Int,
     token: String

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:binding="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+      name="vm"
+      type="com.qxy.victory.ui.activity.auth.AuthViewModel" />
+
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:clipToPadding="false"
+    tools:context=".MovieRankingActivity">
+
+    <include
+      android:id="@+id/appbar"
+      layout="@layout/toolbar_back"
+      binding:title="@{@string/movie_ranking}" />
+
+    <TextView
+      android:id="@+id/auth_tips"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@{vm.tips}"
+      android:textColor="@color/white"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

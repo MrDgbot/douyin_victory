@@ -30,16 +30,11 @@
     android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
+    android:largeHeap="true"
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
-    android:largeHeap="true"
     tools:ignore="AllowBackup">
 
-    <activity
-      android:name=".ui.activity.videoplay.VideoPlayActivity"
-      android:exported="false"
-      android:label="@string/title_activity_video_play"
-      android:theme="@style/AppTheme.NoActionBar" />
     <activity
       android:name=".ui.activity.main.MainActivity"
       android:exported="true"
@@ -51,7 +46,10 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".network.douyinapi.DouYinEntryActivity"
+      android:name=".ui.activity.videoplay.VideoPlayActivity"
+      android:exported="false" />
+    <activity
+      android:name=".ui.activity.auth.AuthActivity"
       android:exported="true"
       android:launchMode="singleTask"
       android:taskAffinity="com.qxy.victory" />
@@ -63,7 +61,7 @@
       android:launchMode="singleTop" />
     <activity
       android:name="com.qxy.victory.ui.activity.rank.movie.series.SeriesActivity"
-      android:launchMode="standard"/>
+      android:launchMode="standard" />
 
     <provider
       android:name="androidx.startup.InitializationProvider"

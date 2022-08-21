@@ -17,6 +17,14 @@ interface DyService {
     @Query("grant_type") grant_type: String
   ): ApiResponse<ClintAuthResp>
 
+  @GET("oauth/access_token/")
+  suspend fun oauthAcToken(
+    @Query("client_key") client_key: String?,
+    @Query("client_secret") client_secret: String,
+    @Query("grant_type") grant_type: String,
+    @Query("code") code: String
+  ): ApiResponse<ClintAuthResp>
+
   // 影视排行榜
   @GET(OauthUrl.rankItem)
   @Headers("Content-Type:application/json")

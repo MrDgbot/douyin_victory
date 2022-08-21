@@ -42,6 +42,7 @@ import com.skydoves.rainbow.Rainbow
 import com.skydoves.rainbow.RainbowOrientation
 import com.skydoves.rainbow.color
 import com.skydoves.whatif.whatIfNotNullOrEmpty
+import timber.log.Timber
 
 object ViewBinding {
 
@@ -51,6 +52,15 @@ object ViewBinding {
     text.whatIfNotNullOrEmpty {
       Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
     }
+  }
+
+  @JvmStatic
+  @BindingAdapter("circleImage")
+  fun bindLoadCircleImage(view: AppCompatImageView, url: String) {
+    Glide.with(view.context)
+      .load(url)
+      .circleCrop()
+      .into(view)
   }
 
   @JvmStatic
@@ -178,8 +188,8 @@ object ViewBinding {
   }
 
   @JvmStatic
-  @BindingAdapter("page_change")
-  fun bindPageChange(view: TabLayout, pager: ViewPager2) {
+  @BindingAdapter("tab_change")
+  fun bindTabChange(view: TabLayout, pager: ViewPager2) {
     view.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
       override fun onTabSelected(tab: TabLayout.Tab?) {
         tab?.position?.let { pager.setCurrentItem(it, false) }
@@ -189,6 +199,35 @@ object ViewBinding {
       }
 
       override fun onTabUnselected(tab: TabLayout.Tab?) {
+      }
+    })
+  }
+
+  @JvmStatic
+  @BindingAdapter("tab_change_with_animation")
+  fun bindTabChangeWithAnimation(view: TabLayout, pager: ViewPager2) {
+
+    view.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+      override fun onTabSelected(tab: TabLayout.Tab?) {
+        tab?.position?.let { pager.setCurrentItem(it, true) }
+      }
+
+      override fun onTabReselected(tab: TabLayout.Tab?) {
+      }
+
+      override fun onTabUnselected(tab: TabLayout.Tab?) {
+      }
+    })
+  }
+
+  @JvmStatic
+  @BindingAdapter("viewpager_change")
+  fun bindViewpagerChangeWithAnimation(view: ViewPager2, tabLayout: TabLayout) {
+    // 滑动修改TabLayout
+    view.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+      override fun onPageSelected(position: Int) {
+        tabLayout.getTabAt(position)?.select()
+        Timber.d("onPageSelected: $position")
       }
     })
   }

@@ -32,6 +32,7 @@
   <string name="release_name" translatable="false"> 播出</string>
   <string name="hot_name" translatable="false">热度 </string>
   <string name="refresh" translatable="false">刷新</string>
+  <string name="img_test" translatable="false">https://p9-dy.byteimg.com/obj/compass/93204d13cf5a4fb080e74ea6d057eca1?from=552310259</string>
   <string-array name="planets_array">
     <item>Mercury</item>
     <item>Venus</item>

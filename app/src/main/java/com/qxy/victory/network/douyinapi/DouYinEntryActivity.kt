@@ -2,7 +2,6 @@ package com.qxy.victory.network.douyinapi
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +17,7 @@ import com.qxy.victory.ui.activity.main.MainActivity
 import timber.log.Timber
 
 class DouYinEntryActivity : AppCompatActivity(), IApiEventHandler {
-  lateinit var douYinOpenApi: DouYinOpenApi
+  private lateinit var douYinOpenApi: DouYinOpenApi
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
