@@ -1,5 +1,6 @@
 package com.qxy.victory.ui.activity.videoplay
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -40,17 +41,16 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
   private val  videoData: VideoData by bundleNonNull(EXTRA_POKEMON)
 
 
-
+  @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
-    val activityVideoPlayBinding = ActivityVideoPlayBinding.inflate(layoutInflater)
     super.onCreate(savedInstanceState)
     binding {
       item=videoData
     }
+    val activityVideoPlayBinding = ActivityVideoPlayBinding.inflate(layoutInflater)
+    setContentView(activityVideoPlayBinding.root)
     val webView = activityVideoPlayBinding.videoWebView
-
-    webView.loadUrl(videoData.shareUrl)
     webView.webViewClient = object : WebViewClient() {
       override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
         if (url != null) {
@@ -59,6 +59,8 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
         return true
       }
     }
+
+    //activityVideoPlayBinding.ceshiText.text="666"
 
 
 
@@ -93,7 +95,8 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
 
     webView?.fitsSystemWindows = true
     webView?.setLayerType(View.LAYER_TYPE_HARDWARE,null)
-    webView.loadUrl("https://www.baidu.com/")
+    webView.loadUrl(videoData.shareUrl)
+    //webView.loadUrl(videoData.shareUrl)
     //webView?.loadUrl("https://www.baidu.com")
 
 //    videoWebView.settings.let {it->
