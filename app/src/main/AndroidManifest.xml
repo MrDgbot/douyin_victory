@@ -61,7 +61,18 @@
       android:launchMode="singleTop" />
     <activity
       android:name="com.qxy.victory.ui.activity.rank.movie.series.SeriesActivity"
-      android:launchMode="standard" />
+      android:launchMode="singleTop"/>
+    <activity
+      android:name=".ui.activity.follow.FollowActivity"
+      android:exported="true"
+      android:launchMode="singleTop">
+<!--      <intent-filter>-->
+<!--        <action android:name="android.intent.action.MAIN" />-->
+
+<!--        <category android:name="android.intent.category.LAUNCHER" />-->
+<!--      </intent-filter>-->
+    </activity>
+
 
     <provider
       android:name="androidx.startup.InitializationProvider"

@@ -16,14 +16,16 @@
 
 package com.qxy.victory.persistence
 
+import androidx.loader.content.Loader
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.qxy.victory.model.Follower
 import com.qxy.victory.model.RankItem
 import com.qxy.victory.model.VideoData
 
 @Database(
-  entities = [RankItem::class,VideoData::class],
+  entities = [RankItem::class,VideoData::class,Follower::class],
   version = 3,
   exportSchema = true
 )
@@ -31,6 +33,8 @@ import com.qxy.victory.model.VideoData
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun rankDao(): RankDao
+
+  abstract fun followerDao() : FollowerDao
 
   abstract fun videoDao(): VideoDao
 }

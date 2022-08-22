@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "f06c177723b5c034f204d34cee1a1e79",
+    "identityHash": "5fdc233f8e352320701541d18ff1279d",
     "entities": [
       {
         "tableName": "RankItem",
@@ -223,12 +223,86 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Follower",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`page` INTEGER NOT NULL, `index` INTEGER NOT NULL, `nickName` TEXT NOT NULL, `avatar` TEXT NOT NULL, `country` TEXT NOT NULL, `province` TEXT NOT NULL, `city` TEXT NOT NULL, `gender` INTEGER NOT NULL, `unionId` TEXT, `openId` TEXT NOT NULL, PRIMARY KEY(`openId`))",
+        "fields": [
+          {
+            "fieldPath": "page",
+            "columnName": "page",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "index",
+            "columnName": "index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nickName",
+            "columnName": "nickName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avatar",
+            "columnName": "avatar",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "province",
+            "columnName": "province",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unionId",
+            "columnName": "unionId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "openId",
+            "columnName": "openId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "openId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f06c177723b5c034f204d34cee1a1e79')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5fdc233f8e352320701541d18ff1279d')"
     ]
   }
 }

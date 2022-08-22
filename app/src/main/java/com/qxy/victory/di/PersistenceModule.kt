@@ -63,6 +63,12 @@ object PersistenceModule {
   fun provideVideoDao(appDatabase: AppDatabase): VideoDao {
     return appDatabase.videoDao()
   }
+  @Provides
+  @Singleton
+  fun provideFollowerDao(appDatabase: AppDatabase): FollowerDao {
+    return appDatabase.followerDao()
+  }
+
 
   @Provides
   @Singleton

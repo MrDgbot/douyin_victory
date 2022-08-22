@@ -1,6 +1,7 @@
 package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
+import com.qxy.victory.model.FollowerResp
 import com.qxy.victory.model.RankResp
 import com.qxy.victory.model.VideoDetailResp
 import com.qxy.victory.model.VideoResp
@@ -57,4 +58,24 @@ interface DyService {
   suspend fun getCurrentVideo(
 //    @Field("item_ids") itemIds:String
   ): ApiResponse<VideoDetailResp>
+
+  //用户关注的人
+  @GET(OauthUrl.following)
+  @Headers("Content-Type:application/json")
+  suspend fun discoveryFollowerList(
+    @Header("access-token") token: String,
+    @Query("open_id") openId: String,
+    @Query("count") count: Int,
+  ): ApiResponse<FollowerResp>
+
+  //粉丝
+  //用户关注的人
+  @GET(OauthUrl.fans)
+  @Headers("Content-Type:application/json")
+  suspend fun discoveryFansList(
+    @Header("access-token") token: String,
+    @Query("open_id") openId: String,
+    @Query("count") count: Int,
+  ): ApiResponse<FollowerResp>
 }
+

@@ -1,6 +1,8 @@
 package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
+import com.qxy.victory.model.Follower
+import com.qxy.victory.model.FollowerResp
 import com.qxy.victory.model.RankResp
 import com.qxy.victory.model.VideoDetailResp
 import com.qxy.victory.model.VideoResp
@@ -58,4 +60,25 @@ class DyClient @Inject constructor(
     )
 
 
+  suspend fun getFollowerList(
+    openId: String,
+    count: Int,
+    token: String,
+  ): ApiResponse<FollowerResp> =
+    dyService.discoveryFollowerList(
+      token =  token,
+      count = count,
+      openId = openId
+    )
+
+  suspend fun getFansList(
+    openId: String,
+    count: Int,
+    token: String,
+  ): ApiResponse<FollowerResp> =
+    dyService.discoveryFansList(
+      token =  token,
+      count = count,
+      openId = openId
+    )
 }

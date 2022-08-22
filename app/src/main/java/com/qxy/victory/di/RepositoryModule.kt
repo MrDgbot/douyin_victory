@@ -17,8 +17,10 @@
 package com.qxy.victory.di
 
 import com.qxy.victory.network.DyClient
+import com.qxy.victory.persistence.FollowerDao
 import com.qxy.victory.persistence.RankDao
 import com.qxy.victory.persistence.VideoDao
+import com.qxy.victory.repository.FollowerRepository
 import com.qxy.victory.repository.RankRepository
 import com.qxy.victory.repository.VideoRepository
 import dagger.Module
@@ -40,6 +42,16 @@ object RepositoryModule {
     coroutineDispatcher: CoroutineDispatcher
   ): RankRepository {
     return RankRepository(dyClient, rankDao, coroutineDispatcher)
+  }
+
+  @Provides
+  @ViewModelScoped
+  fun provideFollowerRepository(
+    dyClient: DyClient,
+    followerDao: FollowerDao,
+    coroutineDispatcher: CoroutineDispatcher
+  ): FollowerRepository {
+    return FollowerRepository(dyClient, followerDao, coroutineDispatcher)
   }
 
   @Provides
