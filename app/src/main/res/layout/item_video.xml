@@ -21,7 +21,7 @@
       android:layout_margin="6dp"
       android:background="@color/background800"
       android:foreground="?attr/selectableItemBackground"
-      app:cardBackgroundColor="@color/background800"
+
       app:cardCornerRadius="14dp"
       app:cardElevation="4dp"
       >
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
         android:padding="6dp"
-        tools:background="@color/background800"
+
         tools:ignore="UnusedAttribute">
 
         <FrameLayout
@@ -48,7 +48,6 @@
             android:id="@+id/image"
             android:layout_width="100dp"
             android:layout_height="130dp"
-            android:layout_margin="10dp"
             android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,9 +55,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:paletteCard="@{cardView}"
-            app:paletteImage="@{item.cover}" />
+            app:paletteImage="@{item.cover}"></androidx.appcompat.widget.AppCompatImageView>
+
+
         </FrameLayout>
 
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+          tools:layout_editor_absoluteX="6dp">
+
+          <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:src="@drawable/ic_arrow"></ImageView>
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@{`  ` + item.statistics.playCount, default = `播放`}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="@color/white" />
+        </LinearLayout>
       </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
