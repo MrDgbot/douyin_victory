@@ -19,55 +19,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-      android:id="@+id/ll_vp_mine"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/background"
-      android:orientation="vertical"
+
+    <include
+      android:id="@+id/appbar"
+      layout="@layout/toolbar_back"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent">
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
-      <include
-        android:id="@+id/appbar"
-        layout="@layout/toolbar_back" />
+    <com.google.android.material.tabs.TabLayout
+      android:id="@+id/follow_tab_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/background"
+      android:paddingBottom="5dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/appbar"
+      app:tabIndicatorAnimationMode="elastic"
+      app:tabIndicatorColor="@color/yellow"
+      app:tabSelectedTextColor="@color/white"
+      app:tabTextColor="@color/white_56"
+      app:tab_change_with_animation="@{followViewPager}">
 
-      <com.google.android.material.tabs.TabLayout
-        android:id="@+id/follow_tab_layout"
-        android:layout_width="match_parent"
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/action_home"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/background"
-        android:paddingBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorColor="@color/yellow"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/white_56"
-        app:tab_change_with_animation="@{followViewPager}">
+        android:text="@string/get_watch" />
 
-        <com.google.android.material.tabs.TabItem
-          android:id="@+id/action_home"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/get_watch" />
-
-        <com.google.android.material.tabs.TabItem
-          android:id="@+id/action_friend"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/get_fans" />
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/action_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get_fans" />
 
 
-      </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
 
-      <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/follow_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:adapter="@{adapter}"
-        app:viewpager_change="@{followTabLayout}" />
-    </LinearLayout>
+    <androidx.viewpager2.widget.ViewPager2
+      android:id="@+id/follow_view_pager"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/background"
+      app:adapter="@{adapter}"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/follow_tab_layout"
+      app:viewpager_change="@{followTabLayout}" />
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>

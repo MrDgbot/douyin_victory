@@ -7,6 +7,6 @@ import javax.inject.Inject
 @HiltViewModel
 class FansViewModel @Inject constructor(
   private val followerRepository: FollowerRepository
-) : BaseFollowViewModel(followerRepository){
+) : BaseFollowViewModel(2,followerRepository){
 
 }

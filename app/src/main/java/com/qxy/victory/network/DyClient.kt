@@ -80,13 +80,12 @@ class DyClient @Inject constructor(
     )
 
   suspend fun getFansList(
-    openId: String,
-    count: Int,
-    token: String,
+    cursor: Int,
   ): ApiResponse<FollowerResp> =
     dyService.discoveryFansList(
-      count = count,
-      openId = openId
+      cursor = cursor,
+      count = 10,
+      openId = Constants.OPEN_ID
     )
 
   private fun createJsonRequestBody(vararg params: Pair<String, String>): RequestBody {

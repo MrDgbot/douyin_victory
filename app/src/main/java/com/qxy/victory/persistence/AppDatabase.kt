@@ -25,7 +25,7 @@ import com.qxy.victory.model.VideoData
 
 @Database(
   entities = [RankItem::class, VideoData::class, Follower::class],
-  version = 5,
+  version = 6,
   exportSchema = true
 )
 @TypeConverters(value = [StringListTypeConverter::class])

@@ -11,9 +11,9 @@ interface FollowerDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   suspend fun insertList(followerList: List<Follower>)
 
-  @Query("SELECT * FROM Follower WHERE page = :page_")
-  suspend fun getList(page_: Int): List<Follower>
+  @Query("SELECT * FROM Follower WHERE page = :page_ AND type = :type_")
+  suspend fun getList(page_: Int, type_: Int): List<Follower>
 
-  @Query("SELECT * FROM Follower WHERE page <= :page_")
-  suspend fun getAllList(page_: Int): List<Follower>
+  @Query("SELECT * FROM Follower WHERE page <= :page_ AND type = :type_")
+  suspend fun getAllList(page_: Int, type_: Int): List<Follower>
 }

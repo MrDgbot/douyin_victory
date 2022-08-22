@@ -27,7 +27,7 @@ class FollowActivity : BindingActivity<ActivityFollowBinding>(R.layout.activity_
     val myFragmentActivity: FragmentActivity = this
     binding {
       vm = viewModel
-      adapter = FollowAdapter(myFragmentActivity, 5)
+      adapter = FollowAdapter(myFragmentActivity, 2)
     }
 
   }

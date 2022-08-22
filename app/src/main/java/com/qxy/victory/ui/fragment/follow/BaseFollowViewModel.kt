@@ -8,14 +8,13 @@ import com.qxy.victory.repository.FollowerRepository
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber
 import javax.inject.Inject
 
-@HiltViewModel
 open class BaseFollowViewModel @Inject constructor(
+  private var type: Int,
   private val followerRepository: FollowerRepository
 ) : BindingViewModel() {
   init {
@@ -38,6 +37,7 @@ open class BaseFollowViewModel @Inject constructor(
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
     followerRepository.fetchFollowerList(
       page = page,
+      type = type,
       onStart = {
         isLoading = true
         isRefresh = false

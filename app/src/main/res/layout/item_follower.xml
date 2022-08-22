@@ -127,7 +127,7 @@
             android:gravity="start"
             android:maxLines="1"
             android:padding="4dp"
-            android:text="@{item.gender}"
+            android:text="@{item.genderString}"
             android:textColor="@color/white"
             android:textSize="11sp"
             app:layout_constraintStart_toEndOf="@id/location"

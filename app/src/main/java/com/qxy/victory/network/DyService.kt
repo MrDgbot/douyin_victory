@@ -48,6 +48,7 @@ interface DyService {
   suspend fun discoveryFansList(
     @Query("open_id") openId: String,
     @Query("count") count: Int,
+    @Query("cursor") cursor: Int,
   ): ApiResponse<FollowerResp>
 
   // 影视排行榜

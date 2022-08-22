@@ -30,7 +30,6 @@ class HttpRequestInterceptor : Interceptor {
     var currentTokenFileName = ""
     NetWorkUtils.instance.urlClassMap.forEach {
       it.value.forEach { url ->
-        Timber.d("url: $url")
         if (originalRequest.url.toString().contains(url)) {
           Timber.d("request url : $url")
           currentTokenFileName = it.key
@@ -39,14 +38,16 @@ class HttpRequestInterceptor : Interceptor {
     }
     // 根据文件名获取对应的token
      Timber.d("currentTokenFileName : $currentTokenFileName")
+     Timber.d("Code : ${Constants.CODE}")
+     Timber.d("AcToken : ${Constants.ACT_TOKEN}")
     when (currentTokenFileName) {
       "OauthUrl" -> {
         Timber.d("OauthUrl")
-        request.addHeader("access_token", Constants.CLT_TOKEN).build()
+        request.addHeader("access-token", Constants.CLT_TOKEN).build()
       }
       "AcUrl" -> {
         Timber.d("AcUrl")
-        request.addHeader("access_token", Constants.ACT_TOKEN).build()
+        request.addHeader("access-token", Constants.ACT_TOKEN).build()
       }
       else -> {
         request.build()

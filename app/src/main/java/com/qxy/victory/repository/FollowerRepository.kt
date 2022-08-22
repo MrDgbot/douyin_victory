@@ -1,8 +1,10 @@
 package com.qxy.victory.repository
 
 import androidx.annotation.WorkerThread
+import com.qxy.victory.model.FollowerResp
 import com.qxy.victory.network.DyClient
 import com.qxy.victory.persistence.FollowerDao
+import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
@@ -22,27 +24,37 @@ class FollowerRepository @Inject constructor(
   @WorkerThread
   fun fetchFollowerList(
     page: Int,
+    type: Int,
     onStart: () -> Unit,
     onComplete: () -> Unit,
     onError: (String?) -> Unit
   ) = flow {
-    Timber.d("Page ${page}")
     val requestPage = if (page == -1) 0 else page
-    Timber.d("Request Page ${requestPage}")
-    var followerList = followerDao.getList(requestPage)
+    var followerList = followerDao.getList(requestPage, type)
+
     if (followerList.isEmpty()) {
-      val response = dyClient.getFollowerList(10)
+      lateinit var response: ApiResponse<FollowerResp>
+      when (type) {
+        1 -> response = dyClient.getFollowerList(requestPage)
+        2 -> response = dyClient.getFansList(requestPage)
+      }
+
       response.suspendOnSuccess {
         Timber.d("response2 ${data}")
-//        followerList = data.data.list
-//        Timber.d(followerList.toString())
-//        Timber.d(data.data.list.toString())
-//        for ((index, rank) in followerList.withIndex()) {
-//          rank.page = requestPage
-//          rank.index = index + 1
-//        }
-//        followerDao.insertList(followerList)
-        emit(followerDao.getAllList(requestPage))
+        if (data.data.list.isNullOrEmpty()) {
+          emit(emptyList())
+        } else {
+          followerList = data.data.list!!
+        }
+        Timber.d(followerList.toString())
+        Timber.d(data.data.list.toString())
+        for ((index, rank) in followerList.withIndex()) {
+          rank.page = requestPage
+          rank.index = index + 1
+          rank.type = type
+        }
+        followerDao.insertList(followerList)
+        emit(followerDao.getAllList(requestPage, type))
       }.onFailure {
         Timber.d(message())
         onError(message())
@@ -52,7 +64,7 @@ class FollowerRepository @Inject constructor(
       }
 
     } else {
-      emit(followerDao.getAllList(requestPage))
+      emit(followerDao.getAllList(requestPage, type))
     }
   }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
 }
