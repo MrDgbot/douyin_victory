@@ -38,10 +38,11 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
     init()
 
     //Timber.d("测试11："+videoData)
-    binding {
-      item=videoData
-    }
+//    binding {
+//      item=videoData
+//    }
     setContentView(activityVideoPlayBinding.root)
+    activityVideoPlayBinding.item=videoData
   }
 
   fun init(){
