@@ -1,6 +1,7 @@
 package com.qxy.victory.ui.activity.videoplay
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -25,16 +26,25 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
   @get:VisibleForTesting
   private val  videoData: VideoData by bundleNonNull(EXTRA_POKEMON)
 
+  lateinit var activityVideoPlayBinding:ActivityVideoPlayBinding
 
-  @SuppressLint("SetJavaScriptEnabled")
+//  @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
+
+    activityVideoPlayBinding= ActivityVideoPlayBinding.inflate(layoutInflater)
+
+    init()
+
+    //Timber.d("测试11："+videoData)
     binding {
       item=videoData
     }
-    val activityVideoPlayBinding = ActivityVideoPlayBinding.inflate(layoutInflater)
     setContentView(activityVideoPlayBinding.root)
+  }
+
+  fun init(){
     val webView = activityVideoPlayBinding.videoWebView
     webView.webViewClient = object : WebViewClient() {
       override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
@@ -42,6 +52,14 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
           view?.loadUrl(url)
         }
         return true
+      }
+
+      override fun onPageFinished(view: WebView?, url: String?) {
+        super.onPageFinished(view, url)
+      }
+
+      override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+        super.onPageStarted(view, url, favicon)
       }
     }
 
@@ -80,49 +98,11 @@ class VideoPlayActivity : BindingActivity<ActivityVideoPlayBinding>(R.layout.act
 
     webView?.fitsSystemWindows = true
     webView?.setLayerType(View.LAYER_TYPE_HARDWARE,null)
-    webView.loadUrl(videoData.shareUrl)
-    //webView.loadUrl(videoData.shareUrl)
-    //webView?.loadUrl("https://www.baidu.com")
+  }
 
-//    videoWebView.settings.let {it->
-//      it.setCacheMode(WebSettings.LOAD_DEFAULT)
-//      it.setDatabaseEnabled(true)
-//      it.setDomStorageEnabled(true)
-//      it.setJavaScriptEnabled(true)
-//      it.setSupportZoom(true)
-//      it.setDefaultTextEncodingName("utf-8")
-//      it.setUseWideViewPort(true)
-//      it.setLoadWithOverviewMode(true)
-//      it.setBuiltInZoomControls(true)
-//      it.setBuiltInZoomControls(true)
-//      it.setDisplayZoomControls(false)
-//      it.setAllowContentAccess(true)
-//      it.setBlockNetworkImage(false)
-//      it.setUseWideViewPort(true)
-//    }
-
-//    videoWebView.webChromeClient= WebChromeClient()
-//
-//    val wvc: WebViewClient = object : WebViewClient() {
-//      override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-//        view.loadUrl(url)
-//        return true
-//      }
-//    }
-//    videoWebView.webViewClient=wvc
-//
-//    videoWebView.webChromeClient={
-//      object : WebChromeClient() {
-//        override fun getVideoLoadingProgressView(): View? {
-//          val frameLayout=FrameLayout(this)
-//          return super.getVideoLoadingProgressView()
-//        }
-//
-//      }
-//
-//    }
-
-
+  override fun onStart() {
+    super.onStart()
+    activityVideoPlayBinding.videoWebView.loadUrl(videoData.shareUrl)
   }
 
   companion object {

@@ -33,7 +33,9 @@
     android:largeHeap="true"
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
-    tools:ignore="AllowBackup">
+    tools:ignore="AllowBackup"
+    android:usesCleartextTraffic="true"
+    android:networkSecurityConfig="@xml/newwork_security_config">
 
     <activity
       android:name=".ui.activity.main.MainActivity"
