@@ -1,6 +1,7 @@
 package com.qxy.victory.network
 
 import com.qxy.victory.model.*
+import com.qxy.victory.network.url.AcUrl
 import com.qxy.victory.network.url.OauthUrl
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.RequestBody
@@ -16,7 +17,7 @@ interface DyService {
   ): ApiResponse<ClintAuthResp>
 
   // 客户端Token
-  @GET("oauth/access_token/")
+  @GET(AcUrl.token)
   suspend fun oauthAcToken(
     @Query("client_key") client_key: String?,
     @Query("client_secret") client_secret: String,
@@ -25,12 +26,28 @@ interface DyService {
   ): ApiResponse<ClintAuthResp>
 
   // 获取用户公开信息
-  @POST("/oauth/userinfo/")
+  @POST(AcUrl.userInfo)
   @Headers("Content-Type:application/json")
   suspend fun oauthUserInfo(
     @Body params: RequestBody,
-    @Header("access-token") token: String,
-    ): ApiResponse<UserInfo>
+  ): ApiResponse<UserInfo>
+
+  //用户关注的人
+  @GET(AcUrl.following)
+  @Headers("Content-Type:application/json")
+  suspend fun discoveryFollowerList(
+    @Query("open_id") openId: String,
+    @Query("count") count: Int,
+  ): ApiResponse<FollowerResp>
+
+  //粉丝
+  //用户关注的人
+  @GET(AcUrl.fans)
+  @Headers("Content-Type:application/json")
+  suspend fun discoveryFansList(
+    @Query("open_id") openId: String,
+    @Query("count") count: Int,
+  ): ApiResponse<FollowerResp>
 
   // 影视排行榜
   @GET(OauthUrl.rankItem)
@@ -65,22 +82,4 @@ interface DyService {
 //    @Field("item_ids") itemIds:String
   ): ApiResponse<VideoDetailResp>
 
-  //用户关注的人
-  @GET(OauthUrl.following)
-  @Headers("Content-Type:application/json")
-  suspend fun discoveryFollowerList(
-    @Header("access-token") token: String,
-    @Query("open_id") openId: String,
-    @Query("count") count: Int,
-  ): ApiResponse<FollowerResp>
-
-  //粉丝
-  //用户关注的人
-  @GET(OauthUrl.fans)
-  @Headers("Content-Type:application/json")
-  suspend fun discoveryFansList(
-    @Header("access-token") token: String,
-    @Query("open_id") openId: String,
-    @Query("count") count: Int,
-  ): ApiResponse<FollowerResp>
 }

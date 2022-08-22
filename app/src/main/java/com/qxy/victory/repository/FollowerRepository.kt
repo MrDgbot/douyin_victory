@@ -28,20 +28,20 @@ class FollowerRepository @Inject constructor(
   ) = flow {
     Timber.d("Page ${page}")
     val requestPage = if (page == -1) 0 else page
-
+    Timber.d("Request Page ${requestPage}")
     var followerList = followerDao.getList(requestPage)
     if (followerList.isEmpty()) {
-
-      val response2 = dyClient.getFollowerList(10)
-      response2.suspendOnSuccess {
-        followerList = data.data.list
-        Timber.d(followerList.toString())
-        Timber.d(data.data.list.toString())
-        for ((index, rank) in followerList.withIndex()) {
-          rank.page = requestPage
-          rank.index = index + 1
-        }
-        followerDao.insertList(followerList)
+      val response = dyClient.getFollowerList(10)
+      response.suspendOnSuccess {
+        Timber.d("response2 ${data}")
+//        followerList = data.data.list
+//        Timber.d(followerList.toString())
+//        Timber.d(data.data.list.toString())
+//        for ((index, rank) in followerList.withIndex()) {
+//          rank.page = requestPage
+//          rank.index = index + 1
+//        }
+//        followerDao.insertList(followerList)
         emit(followerDao.getAllList(requestPage))
       }.onFailure {
         Timber.d(message())

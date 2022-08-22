@@ -38,8 +38,7 @@ class DyClient @Inject constructor(
         "access_token" to Constants.ACT_TOKEN,
         "open_id" to Constants.OPEN_ID
       ),
-      token = Constants.ACT_TOKEN,
-      )
+    )
 
   suspend fun discoveryRankList(
     type: Int,
@@ -75,7 +74,6 @@ class DyClient @Inject constructor(
     count: Int,
   ): ApiResponse<FollowerResp> =
     dyService.discoveryFollowerList(
-      token =  Constants.ACT_TOKEN,
       count = count,
       openId = Constants.OPEN_ID
     )
@@ -86,10 +84,10 @@ class DyClient @Inject constructor(
     token: String,
   ): ApiResponse<FollowerResp> =
     dyService.discoveryFansList(
-      token =  token,
       count = count,
       openId = openId
     )
+
   private fun createJsonRequestBody(vararg params: Pair<String, String>): RequestBody {
     Timber.d("createJsonRequestBody: ${JSONObject(mapOf(*params)).toString()}")
     return JSONObject(mapOf(*params)).toString()

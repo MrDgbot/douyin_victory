@@ -24,8 +24,8 @@ import com.qxy.victory.model.RankItem
 import com.qxy.victory.model.VideoData
 
 @Database(
-  entities = [RankItem::class,VideoData::class,Follower::class],
-  version = 4,
+  entities = [RankItem::class, VideoData::class, Follower::class],
+  version = 5,
   exportSchema = true
 )
 @TypeConverters(value = [StringListTypeConverter::class])
@@ -33,7 +33,7 @@ abstract class AppDatabase : RoomDatabase() {
 
   abstract fun rankDao(): RankDao
 
-  abstract fun followerDao() : FollowerDao
+  abstract fun followerDao(): FollowerDao
 
   abstract fun videoDao(): VideoDao
 }
