@@ -32,7 +32,9 @@ import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.tabs.TabLayout
+import com.qxy.victory.R
 import com.qxy.victory.model.RankItem
+import com.qxy.victory.ui.activity.follow.FollowActivity
 import com.qxy.victory.utils.PokemonTypeUtils
 import com.qxy.victory.utils.SpacesItemDecoration
 import com.skydoves.androidribbon.RibbonRecyclerView
@@ -41,6 +43,7 @@ import com.skydoves.progressview.ProgressView
 import com.skydoves.rainbow.Rainbow
 import com.skydoves.rainbow.RainbowOrientation
 import com.skydoves.rainbow.color
+import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 import timber.log.Timber
 
@@ -56,9 +59,13 @@ object ViewBinding {
 
   @JvmStatic
   @BindingAdapter("circleImage")
-  fun bindLoadCircleImage(view: AppCompatImageView, url: String) {
+  fun bindLoadCircleImage(view: AppCompatImageView, url: String?) {
+    var loadUrl = url
+    if (url.isNullOrEmpty()) {
+      loadUrl = R.string.img_test.toString()
+    }
     Glide.with(view.context)
-      .load(url)
+      .load(loadUrl)
       .circleCrop()
       .into(view)
   }
@@ -131,6 +138,16 @@ object ViewBinding {
         context.onBackPressedDispatcher.onBackPressed()
       }
     }
+  }
+
+  @JvmStatic
+  @BindingAdapter("onFollowClick")
+  fun bindFollowClick(view: View, layout: TransformationLayout) {
+    view.setOnClickListener(object : View.OnClickListener {
+      override fun onClick(v: View?) {
+        FollowActivity.startActivity(layout)
+      }
+    })
   }
 
   @JvmStatic

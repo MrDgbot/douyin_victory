@@ -32,33 +32,22 @@ class FollowerRepository @Inject constructor(
     var followerList = followerDao.getList(requestPage)
     if (followerList.isEmpty()) {
 
-      var accessToken: String
-      var openId: String
-      dyClient.oauthClientToken().suspendOnSuccess {
-        accessToken = data.data.accessToken
-        openId = data.data.openId.toString()
-
-        //val response2 = dyClient.getFollowerList(accessToken,10, openId)
-        val response2 = dyClient.getFollowerList(openId,10, accessToken)
-        response2.suspendOnSuccess {
-          followerList = data.data.list
-          Timber.d(followerList.toString())
-          Timber.d(data.data.list.toString())
-          for ((index, rank) in followerList.withIndex()) {
-            rank.page = requestPage
-            rank.index = index + 1
-          }
-          followerDao.insertList(followerList)
-          emit(followerDao.getAllList(requestPage))
-        }.onFailure {
-          Timber.d(message())
-          onError(message())
-
-        }.onFailure { // handles the all error cases from the API request fails.
-          onError(message())
+      val response2 = dyClient.getFollowerList(10)
+      response2.suspendOnSuccess {
+        followerList = data.data.list
+        Timber.d(followerList.toString())
+        Timber.d(data.data.list.toString())
+        for ((index, rank) in followerList.withIndex()) {
+          rank.page = requestPage
+          rank.index = index + 1
         }
+        followerDao.insertList(followerList)
+        emit(followerDao.getAllList(requestPage))
       }.onFailure {
         Timber.d(message())
+        onError(message())
+
+      }.onFailure { // handles the all error cases from the API request fails.
         onError(message())
       }
 

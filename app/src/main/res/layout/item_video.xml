@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
+
   <data>
+
     <variable
       name="item"
       type="com.qxy.victory.model.VideoData" />
@@ -10,28 +12,26 @@
 
   <com.skydoves.transformationlayout.TransformationLayout
     android:id="@+id/transformationLayout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:transformation_duration="550">
 
     <com.google.android.material.card.MaterialCardView
       android:id="@+id/cardView"
-      android:layout_width="match_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="6dp"
+      android:layout_margin="2dp"
       android:background="@color/background800"
       android:foreground="?attr/selectableItemBackground"
 
       app:cardCornerRadius="14dp"
-      app:cardElevation="4dp"
-      >
+      app:cardElevation="4dp">
 
       <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameConstraintLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
-        android:padding="6dp"
 
         tools:ignore="UnusedAttribute">
 
@@ -51,11 +51,10 @@
             android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:paletteCard="@{cardView}"
-            app:paletteImage="@{item.cover}"></androidx.appcompat.widget.AppCompatImageView>
+            app:paletteImage="@{item.cover}" />
 
 
         </FrameLayout>
@@ -64,16 +63,18 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
+          android:layout_marginBottom="6dp"
           app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-          tools:layout_editor_absoluteX="6dp">
+          app:layout_constraintStart_toStartOf="parent">
 
           <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="3dp"
-            android:src="@drawable/ic_arrow"></ImageView>
+            android:layout_marginStart="3dp"
+            app:srcCompat="@drawable/ic_video" />
+
           <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"

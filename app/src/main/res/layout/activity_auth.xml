@@ -22,7 +22,7 @@
     <include
       android:id="@+id/appbar"
       layout="@layout/toolbar_back"
-      binding:title="@{@string/movie_ranking}" />
+      binding:title="@{@string/auth_page}" />
 
     <TextView
       android:id="@+id/auth_tips"

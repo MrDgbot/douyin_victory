@@ -19,7 +19,7 @@ open class BaseFollowViewModel @Inject constructor(
   private val followerRepository: FollowerRepository
 ) : BindingViewModel() {
   init {
-    Timber.d("init BaseRankViewModel")
+    Timber.d("init BaseFollowViewModel")
   }
 
   @get:Bindable

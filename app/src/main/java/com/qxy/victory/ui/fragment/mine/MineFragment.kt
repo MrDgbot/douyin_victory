@@ -14,6 +14,7 @@ import com.qxy.victory.ui.adapter.MineAdapter
 import com.qxy.victory.utils.Constants
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MineFragment : BindingFragment<FragmentMineBinding>(R.layout.fragment_mine) {
@@ -42,6 +43,9 @@ class MineFragment : BindingFragment<FragmentMineBinding>(R.layout.fragment_mine
     super.onStart()
     if (Constants.CODE.isEmpty()) {
       sendAuth()
+    }else{
+      Timber.d("onResume: ${Constants.CODE}")
+      viewModel.refreshList()
     }
 
 
@@ -52,8 +56,6 @@ class MineFragment : BindingFragment<FragmentMineBinding>(R.layout.fragment_mine
     val request = Authorization.Request()
     request.scope = mScope // 用户授权时必选权限
     request.optionalScope0 = "mobile" // 用户授权时可选权限（默认选择）
-    //request.optionalScope0 = mOptionalScope1;    // 用户授权时可选权限（默认不选）
-    //request.optionalScope0 = mOptionalScope1;    // 用户授权时可选权限（默认不选）
     request.state = "ww" // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
     request.callerLocalEntry = "com.qxy.victory.ui.activity.auth.AuthActivity";
 

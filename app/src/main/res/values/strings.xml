@@ -33,6 +33,17 @@
   <string name="hot_name" translatable="false">热度 </string>
   <string name="refresh" translatable="false">刷新</string>
   <string name="img_test" translatable="false">https://p9-dy.byteimg.com/obj/compass/93204d13cf5a4fb080e74ea6d057eca1?from=552310259</string>
+  <string name="work" translatable="false">作品</string>
+  <string name="private_work" translatable="false">私密</string>
+  <string name="collect" translatable="false">收藏</string>
+  <string name="like" translatable="false">喜欢</string>
+  <string name="city" translatable="false">城市: </string>
+  <string name="get_like" translatable="false"> 获赞</string>
+  <string name="get_fans" translatable="false"> 粉丝</string>
+  <string name="get_watch" translatable="false"> 关注</string>
+  <string name="nullString" translatable="false">暂无</string>
+  <string name="zeroString" translatable="false">0 </string>
+  <string name="auth_page" translatable="false">授权页面</string>
   <string-array name="planets_array">
     <item>Mercury</item>
     <item>Venus</item>

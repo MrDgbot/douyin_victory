@@ -25,7 +25,8 @@ class HttpRequestInterceptor : Interceptor {
   override fun intercept(chain: Interceptor.Chain): Response {
     val originalRequest = chain.request()
     val request = originalRequest.newBuilder().url(originalRequest.url)
-
+//    Timber.d("Request Url: ${originalRequest.url}")
+//    Timber.d("Request Method: ${originalRequest.method}")
     // 找到当前类对应Key的文件名
     var currentTokenFileName = ""
     NetWorkUtils.instance.urlClassMap.forEach {
@@ -43,7 +44,6 @@ class HttpRequestInterceptor : Interceptor {
       )
     }
 
-    Timber.d(request.toString())
     return chain.proceed(
       request.build()
     )

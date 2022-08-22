@@ -1,16 +1,13 @@
 package com.qxy.victory.network
 
-import com.qxy.victory.model.ClintAuthResp
-import com.qxy.victory.model.FollowerResp
-import com.qxy.victory.model.RankResp
-import com.qxy.victory.model.VideoDetailResp
-import com.qxy.victory.model.VideoResp
+import com.qxy.victory.model.*
 import com.qxy.victory.network.url.OauthUrl
 import com.skydoves.sandwich.ApiResponse
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface DyService {
-
+  // 网页Token
   @GET(OauthUrl.token)
   suspend fun oauthClientToken(
     @Query("client_key") client_key: String?,
@@ -18,6 +15,7 @@ interface DyService {
     @Query("grant_type") grant_type: String
   ): ApiResponse<ClintAuthResp>
 
+  // 客户端Token
   @GET("oauth/access_token/")
   suspend fun oauthAcToken(
     @Query("client_key") client_key: String?,
@@ -25,6 +23,14 @@ interface DyService {
     @Query("grant_type") grant_type: String,
     @Query("code") code: String
   ): ApiResponse<ClintAuthResp>
+
+  // 获取用户公开信息
+  @POST("/oauth/userinfo/")
+  @Headers("Content-Type:application/json")
+  suspend fun oauthUserInfo(
+    @Body params: RequestBody,
+    @Header("access-token") token: String,
+    ): ApiResponse<UserInfo>
 
   // 影视排行榜
   @GET(OauthUrl.rankItem)
@@ -78,4 +84,3 @@ interface DyService {
     @Query("count") count: Int,
   ): ApiResponse<FollowerResp>
 }
-

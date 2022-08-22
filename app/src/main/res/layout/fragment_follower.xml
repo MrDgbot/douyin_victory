@@ -11,7 +11,7 @@
 
     <variable
       name="adapter"
-      type="com.qxy.victory.ui.adapter.FollowerAdapter" />
+      type="com.qxy.victory.ui.adapter.FFollowAdapter" />
   </data>
 
 

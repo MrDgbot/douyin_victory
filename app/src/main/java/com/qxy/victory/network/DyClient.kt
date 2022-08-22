@@ -1,13 +1,14 @@
 package com.qxy.victory.network
 
 import com.qxy.victory.model.ClintAuthResp
-import com.qxy.victory.model.Follower
-import com.qxy.victory.model.FollowerResp
-import com.qxy.victory.model.RankResp
-import com.qxy.victory.model.VideoDetailResp
-import com.qxy.victory.model.VideoResp
+import com.qxy.victory.model.*
 import com.qxy.victory.utils.Constants
 import com.skydoves.sandwich.ApiResponse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
+import timber.log.Timber
 import javax.inject.Inject
 
 class DyClient @Inject constructor(
@@ -29,6 +30,16 @@ class DyClient @Inject constructor(
       grant_type = "authorization_code",
       code = Constants.CODE
     )
+
+  // 获取用户公开信息
+  suspend fun oauthUserInfo(): ApiResponse<UserInfo> =
+    dyService.oauthUserInfo(
+      params = createJsonRequestBody(
+        "access_token" to Constants.ACT_TOKEN,
+        "open_id" to Constants.OPEN_ID
+      ),
+      token = Constants.ACT_TOKEN,
+      )
 
   suspend fun discoveryRankList(
     type: Int,
@@ -61,14 +72,12 @@ class DyClient @Inject constructor(
 
 
   suspend fun getFollowerList(
-    openId: String,
     count: Int,
-    token: String,
   ): ApiResponse<FollowerResp> =
     dyService.discoveryFollowerList(
-      token =  token,
+      token =  Constants.ACT_TOKEN,
       count = count,
-      openId = openId
+      openId = Constants.OPEN_ID
     )
 
   suspend fun getFansList(
@@ -81,4 +90,9 @@ class DyClient @Inject constructor(
       count = count,
       openId = openId
     )
+  private fun createJsonRequestBody(vararg params: Pair<String, String>): RequestBody {
+    Timber.d("createJsonRequestBody: ${JSONObject(mapOf(*params)).toString()}")
+    return JSONObject(mapOf(*params)).toString()
+      .toRequestBody("application/json;".toMediaTypeOrNull())
+  }
 }
