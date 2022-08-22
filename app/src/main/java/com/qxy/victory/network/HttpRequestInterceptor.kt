@@ -38,12 +38,14 @@ class HttpRequestInterceptor : Interceptor {
       }
     }
     // 根据文件名获取对应的token
-    // Timber.d("currentTokenFileName : $currentTokenFileName")
+     Timber.d("currentTokenFileName : $currentTokenFileName")
     when (currentTokenFileName) {
       "OauthUrl" -> {
+        Timber.d("OauthUrl")
         request.addHeader("access_token", Constants.CLT_TOKEN).build()
       }
       "AcUrl" -> {
+        Timber.d("AcUrl")
         request.addHeader("access_token", Constants.ACT_TOKEN).build()
       }
       else -> {

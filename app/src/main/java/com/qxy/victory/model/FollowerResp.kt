@@ -11,6 +11,8 @@ data class FollowerResp(
   @JsonClass(generateAdapter = true)
   data class RespData(
     @field:Json(name = "cursor") val cursor: Int?,
+    @field:Json(name = "error_code") val errorCode: Long?,
+    @field:Json(name = "description") val description: String?,
     @field:Json(name = "list") val list: List<Follower>?,
     @field:Json(name = "has_more") val hasMore: Boolean?
   )

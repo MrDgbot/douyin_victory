@@ -71,10 +71,11 @@ class DyClient @Inject constructor(
 
 
   suspend fun getFollowerList(
-    count: Int,
+    cursor: Int,
   ): ApiResponse<FollowerResp> =
     dyService.discoveryFollowerList(
-      count = count,
+      cursor = cursor,
+      count = 10,
       openId = Constants.OPEN_ID
     )
 

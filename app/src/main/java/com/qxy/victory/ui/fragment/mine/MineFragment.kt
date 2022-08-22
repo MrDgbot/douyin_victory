@@ -51,10 +51,11 @@ class MineFragment : BindingFragment<FragmentMineBinding>(R.layout.fragment_mine
 
   }
 
-  private val mScope = "user_info,video.list,video.data,fans.list,following.list"
   fun sendAuth() {
     val request = Authorization.Request()
-    request.scope = mScope // 用户授权时必选权限
+//    private val mScope = "user_info,video.list,video.data,fans.list,following.list,"
+
+    request.scope = Constants.AUTH_PERMISSION // 用户授权时必选权限
     request.optionalScope0 = "mobile" // 用户授权时可选权限（默认选择）
     request.state = "ww" // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
     request.callerLocalEntry = "com.qxy.victory.ui.activity.auth.AuthActivity";
