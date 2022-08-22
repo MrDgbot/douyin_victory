@@ -26,17 +26,23 @@ open class BaseFollowViewModel @Inject constructor(
     private set
 
   @get:Bindable
+  var isLast: Boolean by bindingProperty(false)
+    private set
+
+  @get:Bindable
   var isRefresh: Boolean by bindingProperty(false)
     private set
 
   @get:Bindable
   var toastMessage: String? by bindingProperty(null)
     private set
+  private var cursor = 0
 
-  private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
+  private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(cursor)
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
     followerRepository.fetchFollowerList(
       page = page,
+      cursor = cursor,
       type = type,
       onStart = {
         isLoading = true
@@ -47,6 +53,10 @@ open class BaseFollowViewModel @Inject constructor(
         isRefresh = true
       },
       onComplete = {
+        cursor = it
+        if (cursor == -1) {
+          isLast = true
+        }
         isLoading = false
       },
     )

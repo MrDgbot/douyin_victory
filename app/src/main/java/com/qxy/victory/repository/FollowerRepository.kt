@@ -21,50 +21,54 @@ class FollowerRepository @Inject constructor(
   private val followerDao: FollowerDao,
   private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
+  private var cursor: Int = 0
+
   @WorkerThread
   fun fetchFollowerList(
     page: Int,
+    cursor: Int,
     type: Int,
     onStart: () -> Unit,
-    onComplete: () -> Unit,
+    onComplete: (Int) -> Unit,
     onError: (String?) -> Unit
   ) = flow {
     val requestPage = if (page == -1) 0 else page
+    Timber.d("requestPage$requestPage")
     var followerList = followerDao.getList(requestPage, type)
 
     if (followerList.isEmpty()) {
       lateinit var response: ApiResponse<FollowerResp>
       when (type) {
-        1 -> response = dyClient.getFollowerList(requestPage)
-        2 -> response = dyClient.getFansList(requestPage)
+        1 -> response = dyClient.getFollowerList(cursor)
+        2 -> response = dyClient.getFansList(cursor)
       }
 
       response.suspendOnSuccess {
-        Timber.d("response2 ${data}")
+        Timber.d("Page $requestPage And $cursor")
         if (data.data.list.isNullOrEmpty()) {
           emit(emptyList())
         } else {
+          this@FollowerRepository.cursor = if (data.data.cursor == 0) 0 else data.data.cursor!!
           followerList = data.data.list!!
         }
-        Timber.d(followerList.toString())
-        Timber.d(data.data.list.toString())
         for ((index, rank) in followerList.withIndex()) {
           rank.page = requestPage
           rank.index = index + 1
           rank.type = type
         }
+
         followerDao.insertList(followerList)
         emit(followerDao.getAllList(requestPage, type))
+        Timber.d(followerList.toString())
+
       }.onFailure {
         Timber.d(message())
-        onError(message())
-
-      }.onFailure { // handles the all error cases from the API request fails.
         onError(message())
       }
 
     } else {
       emit(followerDao.getAllList(requestPage, type))
     }
-  }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
+  }.onStart { onStart() }.onCompletion { onComplete(this@FollowerRepository.cursor) }
+    .flowOn(ioDispatcher)
 }
