@@ -65,7 +65,7 @@ object RecyclerViewBinding {
       loadMore = { viewModel.fetchNextPokemonList() },
       onLast = { viewModel.isLast }
     ).run {
-      threshold = 2
+      threshold = 1
     }
   }
 

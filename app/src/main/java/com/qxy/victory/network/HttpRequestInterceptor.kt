@@ -36,10 +36,12 @@ class HttpRequestInterceptor : Interceptor {
         }
       }
     }
+
     // 根据文件名获取对应的token
      Timber.d("currentTokenFileName : $currentTokenFileName")
      Timber.d("Code : ${Constants.CODE}")
      Timber.d("AcToken : ${Constants.ACT_TOKEN}")
+     Timber.d("OpenId : ${Constants.OPEN_ID}")
     when (currentTokenFileName) {
       "OauthUrl" -> {
         Timber.d("OauthUrl")

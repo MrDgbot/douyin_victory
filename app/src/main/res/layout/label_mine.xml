@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+      name="title"
+      type="String" />
+
+  </data>
+
+  <com.skydoves.transformationlayout.TransformationLayout
+    android:id="@+id/transformationLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:transformation_duration="550">
+
+    <com.google.android.material.card.MaterialCardView
+      android:id="@+id/cardView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="6dp"
+      android:background="@color/background800"
+      android:foreground="?attr/selectableItemBackground"
+      app:cardBackgroundColor="@color/background800"
+      app:cardCornerRadius="5dp"
+      app:cardElevation="4dp">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameConstraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="6dp"
+        tools:background="@color/background800"
+        tools:ignore="UnusedAttribute">
+
+
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:textColor="@color/white_56"
+            android:textSize="12sp"
+            tools:text="标签" />
+        </LinearLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+  </com.skydoves.transformationlayout.TransformationLayout>
+
+</layout>
+
+  <!--tools:text="name_en" />-->

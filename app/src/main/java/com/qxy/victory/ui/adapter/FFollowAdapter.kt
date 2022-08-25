@@ -63,7 +63,7 @@ class FFollowAdapter : BindingListAdapter<Follower, FFollowAdapter.FollowViewHol
     private val diffUtil = object : DiffUtil.ItemCallback<Follower>() {
 
       override fun areItemsTheSame(oldItem: Follower, newItem: Follower): Boolean =
-        oldItem.nickName == newItem.nickName
+        oldItem.avatar == newItem.avatar
 
       override fun areContentsTheSame(oldItem: Follower, newItem: Follower): Boolean =
         oldItem == newItem

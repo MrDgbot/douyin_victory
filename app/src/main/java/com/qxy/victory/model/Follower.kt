@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import timber.log.Timber
 
 /**
  * Entity of follower or followed user
@@ -11,7 +12,7 @@ import com.squareup.moshi.JsonClass
  */
 @Entity
 @JsonClass(generateAdapter = true)
-data class Follower (
+data class Follower(
   var page: Int = 0,
   var index: Int = 0,
   var type: Int = 0,
@@ -24,12 +25,25 @@ data class Follower (
   @field:Json(name = "gender") val gender: Int?, //性别: `0` - 未知， `1` - 男性， `2` - 女性
   @field:Json(name = "union_id") val unionId: String?,
   @field:Json(name = "open_id") @PrimaryKey val openId: String,
-){
+) {
   fun getGenderString(): String {
-    return when(gender){
-      1 -> "男"
-      2 -> "女"
+    return when (gender) {
+      1 -> "♂ 男"
+      2 -> "♀ 女"
       else -> "未知"
     }
+  }
+
+  fun getLocationString(): String {
+    val location = if (province == city) {
+      province!!
+    } else {
+      "$province${city}"
+    }
+    Timber.d(
+      "$nickName: $location"
+    )
+    return "$country$location".trim()
+
   }
 }

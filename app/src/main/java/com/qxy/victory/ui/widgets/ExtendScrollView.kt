@@ -148,9 +148,7 @@ class ExtendScrollView : NestedScrollView {
     val lp = mZoomView.layoutParams
     lp.width = (mZoomViewWidth + distance).toInt()
     lp.height = (mZoomViewHeight * ((mZoomViewWidth + distance) / mZoomViewWidth)).toInt()
-    if (lp.height >= (mViewGroupHeight / 2.3)) {
-      lp.height = (mViewGroupHeight / 2.3).toInt()
-    }
+
     (lp as MarginLayoutParams).setMargins(
       -(lp.width - mZoomViewWidth) / 2,
       0,

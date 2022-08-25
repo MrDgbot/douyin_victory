@@ -50,7 +50,7 @@ object NetworkModule {
       .addConverterFactory(MoshiConverterFactory.create())
       .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
       .build()
-  }//.baseUrl("https://www.fastmock.site/mock/26ad7e30cf27a9e2cc7477c13b148794/api/")
+  }
 
   @Provides
   @Singleton

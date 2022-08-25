@@ -12,14 +12,13 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
-import timber.log.Timber
 import javax.inject.Inject
 
-class VideoRepository  @Inject constructor(
+class VideoRepository @Inject constructor(
   private val dyClient: DyClient,
   private val videoDao: VideoDao,
   private val ioDispatcher: CoroutineDispatcher
-) :Repository {
+) : Repository {
 
   @WorkerThread
   fun fetchVideoList(
@@ -32,7 +31,7 @@ class VideoRepository  @Inject constructor(
 
     Log.d("AlphTest", "fetchVideoList: ")
 
-    for (videoData in rankList){
+    for (videoData in rankList) {
       Log.d("AlphTest", videoData.toString())
     }
     Log.d("AlphTest", "fetchVideoList: ")
@@ -49,10 +48,10 @@ class VideoRepository  @Inject constructor(
         emit(videoDao.getAllList())
       }.onFailure {
         onError(message())
-        Log.d("AlphTest", "error"+message())
+        Log.d("AlphTest", "error" + message())
       }.onFailure {
         onError(message())
-        Log.d("AlphTest", "onFailure"+message())
+        Log.d("AlphTest", "onFailure" + message())
       }
     } else {
       emit(videoDao.getAllList())

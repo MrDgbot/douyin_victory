@@ -24,13 +24,11 @@ class UserInfoRepository @Inject constructor(
     onComplete: () -> Unit,
     onError: (String?) -> Unit
   ) = flow {
-    Timber.d("进入UserInfoRepository")
     val response = dyClient.oauthUserInfo()
+
     response.suspendOnSuccess {
       Timber.d("response Data: $data")
       if (data.user.avatar?.isNotEmpty() == true) {
-        Timber.d("user avatar: ${data.user.avatar}")
-        Timber.d("user: ${data.user}")
         emit(data.user)
       }
     }.onFailure {

@@ -37,9 +37,14 @@ open class BaseFollowViewModel @Inject constructor(
   var toastMessage: String? by bindingProperty(null)
     private set
   private var cursor = 0
+  private var refreshID = -2
 
-  private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(cursor)
-  private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
+
+  /* `fetchingIndex` 是一个`MutableStateFlow`，它是一个代表可变状态的`Flow`。 */
+  private val fetchingIndex: MutableStateFlow<Int> = MutableStateFlow(cursor)
+
+  /* `flatMapLatest` 是一个暂停函数，它通过将给定的暂停变换函数应用于每个值来变换流的值。 */
+  private val listFlow = fetchingIndex.flatMapLatest { page ->
     followerRepository.fetchFollowerList(
       page = page,
       cursor = cursor,
@@ -64,7 +69,7 @@ open class BaseFollowViewModel @Inject constructor(
 
 
   @get:Bindable
-  val followerList: List<Follower> by pokemonListFlow.asBindingProperty(
+  val followerList: List<Follower> by listFlow.asBindingProperty(
     viewModelScope,
     emptyList()
   )
@@ -74,7 +79,7 @@ open class BaseFollowViewModel @Inject constructor(
   fun refreshList() {
     if (!isLoading) {
       // -1情况为刷新之后请求，但实际请求页为0[RankRepository类中修改]
-      pokemonFetchingIndex.value = if (pokemonFetchingIndex.value == -1) 0 else -1
+      fetchingIndex.value = if (fetchingIndex.value == refreshID) 0 else refreshID
     }
   }
 
@@ -82,11 +87,11 @@ open class BaseFollowViewModel @Inject constructor(
   @MainThread
   fun fetchNextPokemonList() {
     if (!isLoading) {
-      // -1情况为刷新之后请求，但实际请求页为0
-      if (pokemonFetchingIndex.value == -1) {
-        pokemonFetchingIndex.value = 1
+      // 当页数为刷新标识时，则重置页数为0
+      if (fetchingIndex.value == refreshID) {
+        fetchingIndex.value = 1
       } else {
-        pokemonFetchingIndex.value++
+        fetchingIndex.value++
       }
     }
   }

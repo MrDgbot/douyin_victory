@@ -38,12 +38,16 @@
   <string name="collect" translatable="false">收藏</string>
   <string name="like" translatable="false">喜欢</string>
   <string name="city" translatable="false">城市: </string>
+  <string name="point" translatable="false">・</string>
   <string name="get_like" translatable="false"> 获赞</string>
   <string name="get_fans" translatable="false"> 粉丝</string>
   <string name="get_watch" translatable="false"> 关注</string>
+  <string name="watch" translatable="false">关  注</string>
+  <string name="fans" translatable="false">粉  丝</string>
   <string name="nullString" translatable="false">暂无</string>
   <string name="zeroString" translatable="false">0 </string>
   <string name="auth_page" translatable="false">授权页面</string>
+  <string name="add_tips" translatable="false">+ 添加年龄、学校等标签</string>
   <string-array name="planets_array">
     <item>Mercury</item>
     <item>Venus</item>

@@ -75,6 +75,7 @@ object ViewBinding {
   fun bindLoadImagePalette(view: AppCompatImageView, url: String, paletteCard: MaterialCardView) {
     Glide.with(view.context)
       .load(url)
+      .fitCenter()
       .listener(
         GlidePalette.with(url)
           .use(BitmapPalette.Profile.MUTED_DARK)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:binding="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
 
   <data>
@@ -30,31 +31,20 @@
       <FrameLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
           android:id="@+id/mine_bg"
-
-          android:layout_width="match_parent"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:adjustViewBounds="true"
           android:scaleType="fitXY"
+          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
-
-          <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bg_mine" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/bg_mine" />
+        <!--头像-->
         <androidx.constraintlayout.widget.ConstraintLayout
           android:id="@+id/mine_header"
           android:layout_width="match_parent"
@@ -101,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            android:text="抖音号:"
+            android:text="@{vm.userInfo.nickname, default = `Name`}"
             android:textColor="@color/white_87"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/rl_mine"
@@ -119,7 +109,7 @@
 
 
       </FrameLayout>
-
+      <!--功能版-->
       <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_describe"
         android:layout_width="match_parent"
@@ -166,7 +156,6 @@
               android:layout_height="wrap_content"
               android:layout_margin="10dp"
               android:layout_weight="1"
-
               android:text="@{ (vm.userInfo.city.isEmpty() || (vm.userInfo.city == null)?(@string/zeroString):vm.userInfo.city)+@string/get_watch }"
               android:textColor="@color/white"
               android:textSize="16sp"
@@ -187,20 +176,42 @@
           </LinearLayout>
         </com.skydoves.transformationlayout.TransformationLayout>
 
-        <TextView
-          android:id="@+id/tv_describe"
-          android:layout_width="wrap_content"
+        <HorizontalScrollView
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:padding="10dp"
-          android:text="@{@string/city + (vm.userInfo.city.isEmpty() || (vm.userInfo.city == null)?(@string/nullString):vm.userInfo.city)}"
-          android:textColor="@color/white"
-          android:textSize="16sp"
           app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/trans_form" />
+          app:layout_constraintTop_toBottomOf="@+id/trans_form">
 
+          <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include
+              android:id="@+id/gr"
+              layout="@layout/label_mine"
+              app:gone="@{(vm.userInfo.genderString==`未知`)}"
+              binding:title="@{vm.userInfo.genderString}" />
+
+            <include
+              android:id="@+id/location"
+              layout="@layout/label_mine"
+              app:gone="@{(vm.userInfo.city.isEmpty() || (vm.userInfo.city == null))}"
+              binding:title="@{vm.userInfo.province + @string/point + vm.userInfo.city}" />
+
+            <include
+              android:id="@+id/add"
+              layout="@layout/label_mine"
+              binding:title="@{@string/add_tips}" />
+
+
+
+          </LinearLayout>
+        </HorizontalScrollView>
       </androidx.constraintlayout.widget.ConstraintLayout>
-
+      <!--ViewPager-->
       <LinearLayout
         android:id="@+id/ll_vp_mine"
         android:layout_width="match_parent"
@@ -210,6 +221,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cl_describe">
+
 
         <com.google.android.material.tabs.TabLayout
           android:id="@+id/mine_tab_layout"
@@ -257,6 +269,7 @@
           android:id="@+id/mine_view_pager"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:padding="5dp"
           app:adapter="@{adapter}"
           app:viewpager_change="@{mineTabLayout}" />
       </LinearLayout>

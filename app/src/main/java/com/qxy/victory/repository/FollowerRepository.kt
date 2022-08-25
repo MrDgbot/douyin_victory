@@ -32,10 +32,12 @@ class FollowerRepository @Inject constructor(
     onComplete: (Int) -> Unit,
     onError: (String?) -> Unit
   ) = flow {
-    val requestPage = if (page == -1) 0 else page
+    val requestPage = if (page == -2) 0 else page
     Timber.d("requestPage$requestPage")
-    var followerList = followerDao.getList(requestPage, type)
+    Timber.d("cursor$cursor")
 
+    var followerList = followerDao.getList(requestPage, type)
+    Timber.d(followerList.toString())
     if (followerList.isEmpty()) {
       lateinit var response: ApiResponse<FollowerResp>
       when (type) {
@@ -46,8 +48,11 @@ class FollowerRepository @Inject constructor(
       response.suspendOnSuccess {
         Timber.d("Page $requestPage And $cursor")
         if (data.data.list.isNullOrEmpty()) {
+          Timber.d("responseList${data.data.list.toString()}")
+
           emit(emptyList())
         } else {
+          Timber.d("responseCursor${data.data.cursor}")
           this@FollowerRepository.cursor = if (data.data.cursor == 0) 0 else data.data.cursor!!
           followerList = data.data.list!!
         }

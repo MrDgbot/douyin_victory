@@ -59,6 +59,16 @@ interface DyService {
     @Query("type") type: Int
   ): ApiResponse<RankResp>
 
+  /// 查询授权账号视频列表
+  @Headers("Content-Type:application/json")
+  @GET(AcUrl.videoList)
+  suspend fun getVideoList(
+    @Query("open_id") openId: String,
+    @Query("count") count: Int,
+    @Query("cursor") cursor: Int,
+  ): ApiResponse<VideoResp>
+
+
   /// Mock影视排行榜
   @Headers("Content-Type:application/json")
   @GET("https://mock.apifox.cn/m1/1435365-0-default/discovery/ent/rank/item/")
@@ -68,10 +78,11 @@ interface DyService {
   ): ApiResponse<RankResp>
 
 
+
   /// Mock用户具体的视频
   @Headers("Content-Type:application/json")
   @GET("https://www.fastmock.site/mock/26ad7e30cf27a9e2cc7477c13b148794/api/api/getVideo/")
-  suspend fun getVideo(
+  suspend fun getMockVideo(
 //    @Query("open_id") openId: String,
 //    @Query("count") count: Int,
   ): ApiResponse<VideoResp>

@@ -43,11 +43,10 @@ class MineFragment : BindingFragment<FragmentMineBinding>(R.layout.fragment_mine
     super.onStart()
     if (Constants.CODE.isEmpty()) {
       sendAuth()
-    }else{
+    } else {
       Timber.d("onResume: ${Constants.CODE}")
       viewModel.refreshList()
     }
-
 
   }
 

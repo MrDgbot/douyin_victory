@@ -18,9 +18,17 @@ data class UserInfo(
     @field:Json(name = "description") val description: String?,
     @field:Json(name = "e_account_role") val eAccountRole: String?,
     @field:Json(name = "error_code") val errorCode: String?,
-    @field:Json(name = "gender") val gender: String?,
+    @field:Json(name = "gender") val gender: Int?,
     @field:Json(name = "nickname") val nickname: String?,
     @field:Json(name = "open_id") val openId: String?,
     @field:Json(name = "province") val province: String?
-  )
+  ){
+    fun getGenderString(): String {
+      return when(gender){
+        1 -> "♂ 男"
+        2 -> "♀ 女"
+        else -> "未知"
+      }
+    }
+  }
 }
