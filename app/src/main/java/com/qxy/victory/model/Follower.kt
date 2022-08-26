@@ -41,7 +41,7 @@ data class Follower(
       "$province${city}"
     }
     Timber.d(
-      "$nickName: $location"
+      "$nickName: $country$location"
     )
     return "$country$location".trim()
 

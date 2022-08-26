@@ -45,7 +45,6 @@ import com.skydoves.rainbow.RainbowOrientation
 import com.skydoves.rainbow.color
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.whatif.whatIfNotNullOrEmpty
-import timber.log.Timber
 
 object ViewBinding {
 
@@ -245,7 +244,6 @@ object ViewBinding {
     view.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
         tabLayout.getTabAt(position)?.select()
-        Timber.d("onPageSelected: $position")
       }
     })
   }

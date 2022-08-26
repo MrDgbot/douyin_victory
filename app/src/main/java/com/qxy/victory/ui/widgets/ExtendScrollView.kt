@@ -19,7 +19,8 @@ import com.qxy.victory.utils.DisplayUtil.dp2px
 
 class ExtendScrollView : NestedScrollView {
 
-  lateinit var mZoomView: View
+
+  private lateinit var mZoomView: View
   private var mZoomViewWidth = 0
   private var mZoomViewHeight = 0
   private var mViewGroupWidth = 0
@@ -45,10 +46,6 @@ class ExtendScrollView : NestedScrollView {
   //回调系数，越大，回调越慢
   private var mReplyRate = 0.5f
 
-
-  private companion object {
-    const val TAG = "ExtendScrollView"
-  }
 
   constructor(context: Context?) : super(context!!) {}
   constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {}

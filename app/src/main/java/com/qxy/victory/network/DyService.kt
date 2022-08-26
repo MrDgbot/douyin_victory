@@ -78,7 +78,6 @@ interface DyService {
   ): ApiResponse<RankResp>
 
 
-
   /// Mock用户具体的视频
   @Headers("Content-Type:application/json")
   @GET("https://www.fastmock.site/mock/26ad7e30cf27a9e2cc7477c13b148794/api/api/getVideo/")

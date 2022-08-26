@@ -123,7 +123,7 @@
               <include
                 android:id="@+id/gr"
                 layout="@layout/label_mine"
-                app:gone="@{(item.locationString == ``)}"
+                app:gone="@{(item.locationString.isEmpty()||item.locationString ==``)}"
                 binding:title="@{item.locationString}" />
 
 
