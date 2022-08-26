@@ -59,12 +59,9 @@ object ViewBinding {
   @JvmStatic
   @BindingAdapter("circleImage")
   fun bindLoadCircleImage(view: AppCompatImageView, url: String?) {
-    var loadUrl = url
-    if (url.isNullOrEmpty()) {
-      loadUrl = R.string.img_test.toString()
-    }
     Glide.with(view.context)
-      .load(loadUrl)
+      .load(url)
+      .error(R.drawable.shape_oral)
       .circleCrop()
       .into(view)
   }
